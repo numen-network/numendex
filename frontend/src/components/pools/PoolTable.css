@@ -1,0 +1,405 @@
+/* ==========================================
+   TABLE CONTAINER
+   ========================================== */
+
+.pool-table-container {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 14px;
+  background: var(--surface);
+}
+
+.pool-table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+}
+
+/* ==========================================
+   TABLE
+   ========================================== */
+
+.pool-table {
+  width: 100%;
+  min-width: 940px;
+  margin: 0;
+  border: 0;
+  border-spacing: 0;
+  border-collapse: separate;
+  table-layout: auto;
+  background: transparent;
+}
+
+/* ==========================================
+   HEADER
+   ========================================== */
+
+.pool-table thead {
+  background: var(--surface-soft);
+}
+
+.pool-table thead tr {
+  height: 54px;
+}
+
+.pool-table th {
+  height: 54px;
+  padding: 0 18px;
+  border: 0;
+  color: var(--text-secondary);
+  background: transparent;
+  font-size: 11px;
+  line-height: 1;
+  font-weight: 500;
+  text-align: right;
+  text-transform: none;
+  white-space: nowrap;
+}
+
+.pool-table th:first-child {
+  border-top-left-radius: 14px;
+  border-bottom-left-radius: 14px;
+}
+
+.pool-table th:last-child {
+  border-top-right-radius: 14px;
+  border-bottom-right-radius: 14px;
+}
+
+.pool-table .pool-table-rank {
+  width: 34px;
+  padding-left: 20px;
+  padding-right: 8px;
+  text-align: left;
+}
+
+.pool-table .pool-table-pool-heading {
+  min-width: 250px;
+  text-align: left;
+}
+
+/* ==========================================
+   BODY
+   ========================================== */
+
+.pool-table tbody {
+  background: transparent;
+}
+
+.pool-table tbody tr {
+  height: 78px;
+}
+
+.pool-table td {
+  height: 78px;
+  padding: 0 18px;
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  background: transparent;
+  font-size: 13px;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.pool-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+/* ==========================================
+   ROW
+   ========================================== */
+
+.pool-table-row {
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease;
+}
+
+.pool-table-row:hover {
+  background:
+    var(--surface-soft);
+}
+
+/* ==========================================
+   RANK
+   ========================================== */
+
+.pool-table td.pool-table-rank {
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  text-align: left;
+}
+
+/* ==========================================
+   POOL CELL
+   ========================================== */
+
+.pool-table-pool-cell {
+  min-width: 250px;
+  text-align: left;
+}
+
+.pool-table-pool {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* ==========================================
+   TOKEN ICONS
+   ========================================== */
+
+.pool-token-icons {
+  position: relative;
+  width: 46px;
+  height: 38px;
+  flex: 0 0 46px;
+}
+
+.pool-token-icon {
+  position: absolute;
+  top: 1px;
+  left: 0;
+
+  display: flex;
+  width: 34px;
+  height: 34px;
+  box-sizing: border-box;
+
+  align-items: center;
+  justify-content: center;
+
+  border: 2px solid var(--surface);
+  border-radius: 50%;
+
+  color: var(--text);
+  background: var(--surface-soft);
+
+  box-shadow:
+    0 1px 4px
+    rgba(0, 0, 0, 0.08);
+
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.pool-token-icon-second {
+  left: 15px;
+  z-index: 2;
+
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+/*
+ * Keep icon borders visually correct
+ * while hovering over the table row.
+ */
+
+.pool-table-row:hover
+.pool-token-icon {
+  border-color:
+    var(--surface-soft);
+}
+
+/* ==========================================
+   POOL INFORMATION
+   ========================================== */
+
+.pool-table-pool-info {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 4px;
+}
+
+.pool-table-pool-name {
+  max-width: 190px;
+  overflow: hidden;
+
+  color: var(--text);
+
+  font-size: 14px;
+  line-height: 1.15;
+  font-weight: 650;
+
+  letter-spacing: -0.15px;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pool-table-pool-fee {
+  color: var(--text-muted);
+  font-size: 10px;
+  line-height: 1;
+  font-weight: 500;
+}
+
+/* ==========================================
+   NUMERIC COLUMNS
+   ========================================== */
+
+.pool-table-number {
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 550;
+  text-align: right;
+
+  font-variant-numeric:
+    tabular-nums;
+}
+
+.pool-table-apr {
+  font-weight: 650;
+}
+
+/* ==========================================
+   EMPTY STATE
+   ========================================== */
+
+.pool-table-empty {
+  display: flex;
+  min-height: 180px;
+
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  padding: 30px;
+
+  border-radius: 14px;
+
+  color: var(--text-secondary);
+  background: var(--surface-soft);
+
+  text-align: center;
+}
+
+.pool-table-empty-icon {
+  display: flex;
+  width: 42px;
+  height: 42px;
+
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 12px;
+
+  border-radius: 13px;
+
+  color: var(--accent);
+  background: var(--accent-soft);
+
+  font-size: 21px;
+}
+
+.pool-table-empty strong {
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.pool-table-empty span {
+  margin-top: 5px;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+/* ==========================================
+   TABLET
+   ========================================== */
+
+@media (max-width: 900px) {
+  .pool-table {
+    min-width: 880px;
+  }
+
+  .pool-table th,
+  .pool-table td {
+    padding-right: 14px;
+    padding-left: 14px;
+  }
+
+  .pool-table .pool-table-rank {
+    padding-left: 16px;
+  }
+}
+
+/* ==========================================
+   MOBILE
+   ========================================== */
+
+@media (max-width: 650px) {
+  .pool-table-container {
+    border-radius: 12px;
+  }
+
+  .pool-table {
+    min-width: 820px;
+  }
+
+  .pool-table thead tr,
+  .pool-table th {
+    height: 48px;
+  }
+
+  .pool-table th {
+    padding-right: 12px;
+    padding-left: 12px;
+    font-size: 10px;
+  }
+
+  .pool-table tbody tr,
+  .pool-table td {
+    height: 70px;
+  }
+
+  .pool-table td {
+    padding-right: 12px;
+    padding-left: 12px;
+    font-size: 12px;
+  }
+
+  .pool-table .pool-table-rank {
+    padding-left: 14px;
+  }
+
+  .pool-table-pool-cell {
+    min-width: 220px;
+  }
+
+  .pool-table-pool-heading {
+    min-width: 220px !important;
+  }
+
+  .pool-token-icons {
+    width: 43px;
+    height: 34px;
+    flex-basis: 43px;
+  }
+
+  .pool-token-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 11px;
+  }
+
+  .pool-token-icon-second {
+    left: 14px;
+  }
+
+  .pool-table-pool-name {
+    max-width: 160px;
+    font-size: 13px;
+  }
+
+  .pool-table-pool-fee {
+    font-size: 9px;
+  }
+}

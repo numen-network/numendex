@@ -1,0 +1,47 @@
+/* =========================================================
+   MAIN
+   ========================================================= */
+
+.main-content {
+  position: relative;
+  z-index: 2;
+
+  width: 100%;
+  max-width: 1160px;
+  min-height: 670px;
+
+  margin: 0 auto;
+  padding: 70px 24px 100px;
+}
+
+/* =========================================================
+   TRADE LAYOUT
+   ========================================================= */
+
+.trade-layout {
+  width: 100%;
+  margin: 0 auto;
+
+  transition:
+    max-width 0.25s ease;
+}
+
+.trade-layout.chart-hidden {
+  max-width: 520px;
+  display: block;
+}
+
+.trade-layout.chart-visible {
+  max-width: 1160px;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    520px;
+
+  align-items: start;
+
+  gap: 28px;
+}
+

@@ -1,0 +1,526 @@
+.add-liquidity-page {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 28px 30px 80px;
+  box-sizing: border-box;
+  color: var(--text);
+}
+
+.liquidity-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 26px;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.liquidity-breadcrumb button {
+  padding: 0;
+  cursor: pointer;
+  border: 0;
+  color: var(--text-muted);
+  background: transparent;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.liquidity-breadcrumb button:hover {
+  color: var(--accent);
+}
+
+.liquidity-breadcrumb strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.liquidity-layout {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 650px)
+    minmax(280px, 330px);
+  justify-content: center;
+  gap: 42px;
+  align-items: start;
+}
+
+.liquidity-main-card {
+  min-width: 0;
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  background: var(--surface);
+  box-sizing: border-box;
+}
+
+.liquidity-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.liquidity-card-header h1 {
+  margin: 0;
+  color: var(--text);
+  font-size: 25px;
+  line-height: 1.2;
+  font-weight: 650;
+  letter-spacing: -0.4px;
+}
+
+.liquidity-card-header p {
+  margin: 7px 0 0;
+  color: var(--text-muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.liquidity-back-button {
+  display: flex;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 0;
+  border-radius: 10px;
+  color: var(--text-secondary);
+  background: var(--surface-soft);
+  font-size: 22px;
+  line-height: 1;
+}
+
+.liquidity-back-button:hover {
+  color: var(--text);
+}
+
+.liquidity-section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding: 0 3px;
+}
+
+.liquidity-section-title span {
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.liquidity-section-title small {
+  color: var(--text-muted);
+  font-size: 11px;
+}
+
+.liquidity-token-panel {
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--surface-soft);
+}
+
+.liquidity-token-panel-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 15px;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.liquidity-balance-button {
+  padding: 0;
+  cursor: pointer;
+  border: 0;
+  color: var(--text-muted);
+  background: transparent;
+  font-family: inherit;
+  font-size: 12px;
+}
+
+.liquidity-balance-button:hover {
+  color: var(--text);
+}
+
+.liquidity-token-main-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.liquidity-token-main-row > input {
+  width: 100%;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  color: var(--text);
+  background: transparent;
+  font-family: inherit;
+  font-size: 34px;
+  font-weight: 500;
+  letter-spacing: -1px;
+}
+
+.liquidity-token-main-row > input::placeholder {
+  color: var(--text-muted);
+  opacity: 0.55;
+}
+
+.liquidity-token-button,
+.liquidity-select-token {
+  display: flex;
+  min-width: max-content;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 12px;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  color: var(--text);
+  background: var(--surface);
+  font-family: inherit;
+}
+
+.liquidity-token-button strong {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.liquidity-token-button > span:last-child,
+.liquidity-select-token > span {
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.liquidity-select-token {
+  border-color: transparent;
+  color: #ffffff;
+  background: var(--accent);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.liquidity-token-logo,
+.liquidity-generic-token {
+  display: flex;
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.liquidity-generic-token {
+  color: var(--accent);
+  background: var(--accent-soft);
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.liquidity-panel-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-top: 13px;
+}
+
+.liquidity-panel-footer > span {
+  color: var(--text-muted);
+  font-size: 11px;
+}
+
+.liquidity-panel-footer button {
+  height: 25px;
+  padding: 0 9px;
+  cursor: pointer;
+  border: 0;
+  border-radius: 8px;
+  color: var(--accent);
+  background: var(--accent-soft);
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.liquidity-panel-footer button:disabled,
+.liquidity-balance-button:disabled,
+.liquidity-token-button:disabled,
+.liquidity-select-token:disabled {
+  cursor: default;
+  opacity: 0.55;
+}
+
+.liquidity-plus {
+  display: flex;
+  width: 34px;
+  height: 34px;
+  margin: -5px auto;
+  position: relative;
+  z-index: 2;
+  align-items: center;
+  justify-content: center;
+  border: 4px solid var(--surface);
+  border-radius: 12px;
+  color: var(--text-secondary);
+  background: var(--surface-soft);
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.liquidity-inline-error {
+  margin-top: 10px;
+  color: #dc2626;
+  font-size: 11px;
+}
+
+.liquidity-primary-action {
+  width: 100%;
+  height: 52px;
+  margin-top: 16px;
+  cursor: pointer;
+  border: 0;
+  border-radius: 16px;
+  color: #ffffff;
+  background: var(--accent);
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 750;
+}
+
+.liquidity-primary-action.disabled {
+  cursor: default;
+  color: var(--text-muted);
+  background: var(--surface-soft);
+}
+
+.liquidity-message {
+  margin-top: 13px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.liquidity-message-error {
+  color: #dc2626;
+  border: 1px solid rgba(220, 38, 38, 0.18);
+  background: rgba(220, 38, 38, 0.1);
+}
+
+.liquidity-message-success {
+  color: #16a34a;
+  border: 1px solid rgba(22, 163, 74, 0.18);
+  background: rgba(22, 163, 74, 0.1);
+}
+
+.liquidity-message-transaction {
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  background: var(--surface-soft);
+}
+
+.liquidity-message a {
+  color: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.liquidity-sidebar {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.liquidity-info-card {
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: var(--surface);
+}
+
+.liquidity-info-card h2 {
+  margin: 0 0 20px;
+  color: var(--text);
+  font-size: 17px;
+  font-weight: 650;
+}
+
+.liquidity-muted {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.liquidity-pair-title {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-bottom: 20px;
+}
+
+.liquidity-pair-icons {
+  display: flex;
+  align-items: center;
+}
+
+.liquidity-pair-icons > * + * {
+  margin-left: -7px;
+}
+
+.liquidity-pair-title strong {
+  color: var(--text);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.liquidity-info-row {
+  display: flex;
+  min-height: 37px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.liquidity-info-row:last-child {
+  border-bottom: 0;
+}
+
+.liquidity-info-row span {
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.liquidity-info-row strong {
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 650;
+  text-align: right;
+}
+
+.liquidity-setting {
+  display: flex;
+  min-height: 46px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.liquidity-setting:last-child {
+  border-bottom: 0;
+}
+
+.liquidity-setting > span {
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.liquidity-setting > div {
+  display: flex;
+  height: 32px;
+  align-items: center;
+  gap: 5px;
+  padding: 0 9px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--surface-soft);
+}
+
+.liquidity-setting input {
+  width: 54px;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  color: var(--text);
+  background: transparent;
+  font-family: inherit;
+  font-size: 12px;
+  text-align: right;
+}
+
+.liquidity-setting div span {
+  color: var(--text-muted);
+  font-size: 11px;
+}
+
+.liquidity-status-card p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .liquidity-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .liquidity-sidebar {
+    display: grid;
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0, 1fr)
+      );
+  }
+
+  .liquidity-status-card {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 650px) {
+  .add-liquidity-page {
+    padding: 22px 13px 50px;
+  }
+
+  .liquidity-main-card {
+    padding: 16px;
+    border-radius: 20px;
+  }
+
+  .liquidity-card-header h1 {
+    font-size: 22px;
+  }
+
+  .liquidity-token-main-row {
+    gap: 9px;
+  }
+
+  .liquidity-token-main-row > input {
+    font-size: 27px;
+  }
+
+  .liquidity-token-button,
+  .liquidity-select-token {
+    height: 42px;
+    padding: 0 10px;
+  }
+
+  .liquidity-sidebar {
+    display: flex;
+  }
+
+  .liquidity-info-card {
+    padding: 17px;
+  }
+}

@@ -1,0 +1,445 @@
+@import "./components/legal/LegalPage.css";
+@import "./styles/variables.css";
+@import "./styles/global.css";
+@import "./styles/layout.css";
+
+@import "./components/layout/Header.css";
+
+@import "./components/swap/MarketChart.css";
+@import "./components/swap/SwapCard.css";
+@import "./components/swap/TokenSelector.css";
+
+@import "./components/pools/PoolsPage.css";
+
+@import "./components/layout/Footer.css";
+
+@import "./styles/responsive.css";
+
+@import "./components/explore/ExplorePage.css";
+@import "./components/explore/TokenDetail.css";
+@import "./components/portfolio/PortfolioPage.css";
+
+/* ========================================
+   SWAP HOME HERO
+   ======================================== */
+
+.swap-home-panel {
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.swap-home-hero {
+  width: 100%;
+  max-width: 620px;
+  margin: 10px auto 28px;
+  text-align: center;
+}
+
+.swap-home-hero h1 {
+  margin: 0;
+  color: var(--text);
+  font-size: clamp(38px, 5vw, 62px);
+  font-weight: 650;
+  line-height: 1.08;
+  letter-spacing: -0.045em;
+}
+
+.swap-home-hero p {
+  max-width: 520px;
+  margin: 20px auto 0;
+  color: var(--text-secondary);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.swap-home-hero p strong {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+@media (max-width: 680px) {
+  .swap-home-hero {
+    margin: 2px auto 22px;
+    padding: 0 10px;
+  }
+
+  .swap-home-hero h1 {
+    font-size: clamp(34px, 11vw, 48px);
+    line-height: 1.06;
+  }
+
+  .swap-home-hero p {
+    margin-top: 16px;
+    font-size: 13px;
+  }
+}
+
+.swap-home-fee-note {
+  max-width: 520px;
+  margin: 20px auto 0;
+  padding: 0 16px;
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.swap-home-fee-note strong {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+@media (max-width: 680px) {
+  .swap-home-fee-note {
+    margin-top: 16px;
+    font-size: 13px;
+  }
+}
+
+/* ========================================
+   NUMEN SWAP VISUAL LAYER
+   ======================================== */
+
+.swap-home-panel {
+  position: relative;
+  isolation: isolate;
+}
+
+.swap-home-panel::before {
+  content: "";
+  position: absolute;
+  z-index: -2;
+  top: 120px;
+  left: 50%;
+  width: min(760px, 82vw);
+  height: 560px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background:
+    radial-gradient(
+      circle at 50% 35%,
+      rgba(124, 92, 255, 0.16),
+      rgba(80, 140, 255, 0.08) 34%,
+      transparent 70%
+    );
+  filter: blur(20px);
+  pointer-events: none;
+}
+
+.swap-home-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 28px;
+  margin-bottom: 16px;
+  padding: 0 11px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface-soft);
+  color: var(--accent);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  box-shadow: var(--shadow);
+}
+
+.numen-swap-visuals {
+  position: absolute;
+  z-index: -1;
+  top: -55px;
+  left: 50%;
+  width: min(1440px, calc(100vw - 24px));
+  height: 760px;
+  transform: translateX(-50%);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.numen-orb,
+.numen-mesh {
+  position: absolute;
+  will-change: transform;
+}
+
+.numen-orb {
+  border: 1px solid rgba(132, 108, 255, 0.18);
+  border-radius: 50%;
+  background:
+    radial-gradient(
+      circle at 32% 28%,
+      rgba(255, 255, 255, 0.82) 0%,
+      rgba(152, 130, 255, 0.48) 16%,
+      rgba(91, 109, 255, 0.24) 45%,
+      rgba(80, 215, 224, 0.12) 68%,
+      transparent 76%
+    );
+  box-shadow:
+    inset -10px -12px 22px rgba(64, 46, 140, 0.10),
+    0 12px 38px rgba(99, 76, 220, 0.12);
+  filter: blur(0.3px);
+}
+
+.numen-orb::before,
+.numen-orb::after {
+  content: "";
+  position: absolute;
+  border-radius: inherit;
+}
+
+.numen-orb::before {
+  inset: 17%;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.numen-orb::after {
+  inset: 34%;
+  background: rgba(255, 255, 255, 0.13);
+  filter: blur(4px);
+}
+
+.numen-orb-1 {
+  top: 70px;
+  left: 5%;
+  width: 66px;
+  height: 66px;
+  opacity: 0.54;
+  animation: numenFloatA 12s ease-in-out infinite;
+}
+
+.numen-orb-2 {
+  top: 165px;
+  right: 7%;
+  width: 92px;
+  height: 92px;
+  opacity: 0.42;
+  animation: numenFloatB 15s ease-in-out infinite;
+}
+
+.numen-orb-3 {
+  top: 390px;
+  left: 10%;
+  width: 48px;
+  height: 48px;
+  opacity: 0.40;
+  animation: numenFloatB 11s ease-in-out infinite reverse;
+}
+
+.numen-orb-4 {
+  top: 505px;
+  right: 12%;
+  width: 58px;
+  height: 58px;
+  opacity: 0.44;
+  animation: numenFloatA 14s ease-in-out infinite reverse;
+}
+
+.numen-orb-5 {
+  top: 585px;
+  left: 25%;
+  width: 32px;
+  height: 32px;
+  opacity: 0.30;
+  animation: numenFloatA 10s ease-in-out infinite;
+}
+
+.numen-orb-6 {
+  top: 300px;
+  right: 24%;
+  width: 34px;
+  height: 34px;
+  opacity: 0.28;
+  animation: numenFloatB 13s ease-in-out infinite;
+}
+
+.numen-mesh {
+  width: 108px;
+  height: 108px;
+  border: 1px solid rgba(129, 105, 255, 0.20);
+  background:
+    linear-gradient(
+      135deg,
+      rgba(120, 94, 255, 0.09),
+      rgba(55, 195, 214, 0.05)
+    );
+  box-shadow:
+    0 0 44px rgba(105, 84, 255, 0.10),
+    inset 0 0 30px rgba(125, 99, 255, 0.05);
+  clip-path: polygon(
+    50% 0%,
+    82% 14%,
+    100% 48%,
+    83% 83%,
+    48% 100%,
+    14% 82%,
+    0% 46%,
+    18% 15%
+  );
+  opacity: 0.30;
+}
+
+.numen-mesh::before,
+.numen-mesh::after,
+.numen-mesh span {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 78%;
+  height: 1px;
+  background: rgba(130, 110, 255, 0.30);
+  transform-origin: center;
+}
+
+.numen-mesh::before {
+  transform: translate(-50%, -50%) rotate(30deg);
+}
+
+.numen-mesh::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.numen-mesh span:nth-child(1) {
+  transform: translate(-50%, -50%) rotate(150deg);
+}
+
+.numen-mesh span:nth-child(2) {
+  width: 54%;
+  transform: translate(-50%, -50%) rotate(0deg);
+}
+
+.numen-mesh span:nth-child(3) {
+  width: 54%;
+  transform: translate(-50%, -50%) rotate(60deg);
+}
+
+.numen-mesh-1 {
+  top: 210px;
+  left: 17%;
+  transform: rotate(18deg);
+  animation: numenMeshFloatA 18s ease-in-out infinite;
+}
+
+.numen-mesh-2 {
+  top: 405px;
+  right: 17%;
+  width: 82px;
+  height: 82px;
+  transform: rotate(-24deg);
+  animation: numenMeshFloatB 16s ease-in-out infinite;
+}
+
+@keyframes numenFloatA {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+
+  50% {
+    transform: translate3d(12px, -18px, 0) rotate(8deg);
+  }
+}
+
+@keyframes numenFloatB {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+
+  50% {
+    transform: translate3d(-14px, 16px, 0) rotate(-7deg);
+  }
+}
+
+@keyframes numenMeshFloatA {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(18deg);
+  }
+
+  50% {
+    transform: translate3d(14px, -16px, 0) rotate(27deg);
+  }
+}
+
+@keyframes numenMeshFloatB {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(-24deg);
+  }
+
+  50% {
+    transform: translate3d(-12px, 18px, 0) rotate(-15deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .numen-orb,
+  .numen-mesh {
+    animation: none !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .numen-swap-visuals {
+    height: 690px;
+  }
+
+  .numen-orb-2 {
+    right: 1%;
+  }
+
+  .numen-orb-3,
+  .numen-orb-6,
+  .numen-mesh-2 {
+    display: none;
+  }
+
+  .numen-mesh-1 {
+    left: 4%;
+  }
+}
+
+@media (max-width: 680px) {
+  .swap-home-panel::before {
+    top: 100px;
+    width: 96vw;
+    height: 470px;
+  }
+
+  .swap-home-eyebrow {
+    margin-bottom: 12px;
+  }
+
+  .numen-swap-visuals {
+    top: -25px;
+    width: 100vw;
+    height: 600px;
+  }
+
+  .numen-orb-1 {
+    top: 125px;
+    left: -20px;
+    width: 52px;
+    height: 52px;
+  }
+
+  .numen-orb-2 {
+    top: 235px;
+    right: -25px;
+    width: 66px;
+    height: 66px;
+  }
+
+  .numen-orb-4,
+  .numen-orb-5,
+  .numen-mesh {
+    display: none;
+  }
+}
+

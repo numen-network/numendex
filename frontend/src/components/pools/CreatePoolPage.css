@@ -1,0 +1,1075 @@
+.create-pool-page {
+  width: 100%;
+  min-height: calc(100vh - 72px);
+
+  padding:
+    28px
+    32px
+    80px;
+
+  color: var(--text);
+}
+
+.create-pool-page-inner {
+  width: 100%;
+  max-width: 1180px;
+
+  margin: 0 auto;
+}
+
+.create-pool-breadcrumb {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  margin-bottom: 24px;
+
+  color: var(--text-muted);
+
+  font-size: 12px;
+}
+
+.create-pool-breadcrumb button {
+  padding: 0;
+
+  border: 0;
+
+  background: transparent;
+  color: var(--text-secondary);
+
+  font: inherit;
+
+  cursor: pointer;
+}
+
+.create-pool-breadcrumb button:hover:not(:disabled) {
+  color: var(--accent);
+}
+
+.create-pool-breadcrumb strong {
+  color: var(--text);
+
+  font-weight: 650;
+}
+
+.create-pool-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  margin-bottom: 28px;
+}
+
+.create-pool-title-button {
+  display: flex;
+  align-items: center;
+
+  gap: 11px;
+
+  padding: 0;
+
+  border: 0;
+
+  background: transparent;
+  color: var(--text);
+
+  cursor: pointer;
+}
+
+.create-pool-title-button > span {
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.create-pool-title-button strong {
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.create-pool-title-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.create-pool-topbar-actions {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+}
+
+.create-pool-reset-button,
+.create-pool-version-badge {
+  min-height: 36px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 13px;
+
+  border: 1px solid var(--border);
+  border-radius: 11px;
+
+  background: var(--surface-soft);
+  color: var(--text-secondary);
+
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.create-pool-reset-button {
+  cursor: pointer;
+}
+
+.create-pool-reset-button:hover:not(:disabled) {
+  background: var(--surface-hover);
+  color: var(--text);
+}
+
+.create-pool-reset-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.create-pool-version-badge {
+  color: var(--text);
+}
+
+.create-pool-workspace {
+  display: grid;
+
+  grid-template-columns:
+    270px
+    minmax(0, 1fr);
+
+  align-items: start;
+
+  gap: 20px;
+}
+
+.create-pool-steps {
+  padding: 22px 20px;
+
+  border: 1px solid var(--border);
+  border-radius: 20px;
+
+  background: var(--surface);
+
+  box-shadow: var(--shadow);
+}
+
+.create-pool-step {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 13px;
+}
+
+.create-pool-step-marker {
+  width: 28px;
+  height: 28px;
+
+  flex: 0 0 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid var(--border-strong);
+  border-radius: 50%;
+
+  background: var(--surface-soft);
+  color: var(--text-muted);
+
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.create-pool-step.active
+.create-pool-step-marker {
+  border-color: var(--text);
+
+  background: var(--text);
+  color: var(--bg);
+}
+
+.create-pool-step.complete
+.create-pool-step-marker {
+  border-color: var(--accent);
+
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.create-pool-step-copy {
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+
+  padding-top: 1px;
+}
+
+.create-pool-step-copy span {
+  color: var(--text-muted);
+
+  font-size: 11px;
+}
+
+.create-pool-step-copy strong {
+  color: var(--text-secondary);
+
+  font-size: 13px;
+  font-weight: 650;
+  line-height: 1.35;
+}
+
+.create-pool-step.active
+.create-pool-step-copy strong {
+  color: var(--text);
+}
+
+.create-pool-step.complete
+.create-pool-step-copy strong {
+  color: var(--text);
+}
+
+.create-pool-step-line {
+  width: 1px;
+  height: 34px;
+
+  margin:
+    4px
+    0
+    4px
+    13px;
+
+  background: var(--border);
+}
+
+.create-pool-main-card {
+  width: 100%;
+
+  padding: 24px;
+
+  border: 1px solid var(--border);
+  border-radius: 20px;
+
+  background: var(--surface);
+
+  box-shadow: var(--shadow);
+}
+
+.create-pool-card-heading {
+  margin-bottom: 22px;
+}
+
+.create-pool-card-heading h2 {
+  margin: 0 0 5px;
+
+  color: var(--text);
+
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+
+.create-pool-card-heading p {
+  margin: 0;
+
+  color: var(--text-secondary);
+
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.create-pool-pair-selector {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    42px
+    minmax(0, 1fr);
+
+  align-items: center;
+
+  gap: 9px;
+}
+
+.create-pool-token-button {
+  width: 100%;
+  min-height: 58px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 14px;
+
+  padding: 9px 14px;
+
+  border: 1px solid var(--border);
+  border-radius: 14px;
+
+  background: var(--surface-soft);
+  color: var(--text);
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.18s ease,
+    background 0.18s ease;
+}
+
+.create-pool-token-button:hover:not(:disabled) {
+  border-color: var(--border-strong);
+
+  background: var(--surface-hover);
+}
+
+.create-pool-token-button.selected {
+  background: var(--surface-soft);
+}
+
+.create-pool-token-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.create-pool-token-button-left {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+}
+
+.create-pool-token-logo {
+  width: 32px;
+  height: 32px;
+
+  flex: 0 0 32px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid var(--border);
+  border-radius: 50%;
+
+  background: var(--accent-soft);
+  color: var(--accent);
+
+  font-size: 13px;
+  font-weight: 850;
+}
+
+.create-pool-token-logo-empty {
+  background: var(--surface-hover);
+  color: var(--text-muted);
+}
+
+.create-pool-token-button-text {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  gap: 2px;
+}
+
+.create-pool-token-button-text strong {
+  color: var(--text);
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.create-pool-token-button-text span {
+  max-width: 160px;
+
+  overflow: hidden;
+
+  color: var(--text-muted);
+
+  font-size: 10px;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.create-pool-token-chevron {
+  flex: 0 0 auto;
+
+  color: var(--text-secondary);
+
+  font-size: 13px;
+}
+
+.create-pool-switch-token {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  justify-self: center;
+
+  border: 1px solid var(--border);
+  border-radius: 11px;
+
+  background: var(--surface-soft);
+  color: var(--text-secondary);
+
+  font-size: 16px;
+
+  cursor: pointer;
+
+  transition:
+    background 0.18s ease,
+    color 0.18s ease,
+    transform 0.18s ease;
+}
+
+.create-pool-switch-token:hover:not(:disabled) {
+  background: var(--accent-soft);
+  color: var(--accent);
+
+  transform: rotate(180deg);
+}
+
+.create-pool-switch-token:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.create-pool-config-section {
+  margin-top: 28px;
+}
+
+.create-pool-config-heading {
+  margin-bottom: 12px;
+}
+
+.create-pool-config-heading h3 {
+  margin: 0 0 4px;
+
+  color: var(--text);
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.create-pool-config-heading p {
+  margin: 0;
+
+  color: var(--text-muted);
+
+  font-size: 11px;
+}
+
+.create-pool-config-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 9px;
+}
+
+.create-pool-config-box {
+  padding: 14px;
+
+  border: 1px solid var(--border);
+  border-radius: 13px;
+
+  background: var(--surface-soft);
+}
+
+.create-pool-config-box span {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: var(--text-muted);
+
+  font-size: 10px;
+}
+
+.create-pool-config-box strong {
+  color: var(--text);
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.create-pool-info-banner {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 11px;
+
+  margin-top: 22px;
+
+  padding: 14px;
+
+  border: 1px solid var(--border);
+  border-radius: 13px;
+
+  background: var(--surface-soft);
+}
+
+.create-pool-info-icon {
+  width: 22px;
+  height: 22px;
+
+  flex: 0 0 22px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: var(--accent-soft);
+  color: var(--accent);
+
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.create-pool-info-banner strong {
+  display: block;
+
+  margin-bottom: 3px;
+
+  color: var(--text);
+
+  font-size: 11px;
+}
+
+.create-pool-info-banner p {
+  margin: 0;
+
+  color: var(--text-secondary);
+
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.create-pool-primary-button {
+  width: 100%;
+  min-height: 48px;
+
+  margin-top: 22px;
+
+  border: 0;
+  border-radius: 14px;
+
+  background: var(--accent);
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 750;
+
+  cursor: pointer;
+
+  transition:
+    background 0.18s ease,
+    opacity 0.18s ease,
+    transform 0.18s ease;
+}
+
+.create-pool-primary-button:hover:not(:disabled) {
+  background: var(--accent-hover);
+
+  transform: translateY(-1px);
+}
+
+.create-pool-primary-button:disabled {
+  background: var(--surface-hover);
+  color: var(--text-muted);
+
+  opacity: 0.75;
+
+  cursor: not-allowed;
+
+  transform: none;
+}
+
+.create-pool-secondary-button {
+  width: 100%;
+  min-height: 44px;
+
+  margin-top: 9px;
+
+  border: 1px solid var(--border);
+  border-radius: 13px;
+
+  background: var(--surface-soft);
+  color: var(--text-secondary);
+
+  font-size: 13px;
+  font-weight: 650;
+
+  cursor: pointer;
+}
+
+.create-pool-secondary-button:hover {
+  background: var(--surface-hover);
+  color: var(--text);
+}
+
+.create-pool-message {
+  margin-top: 14px;
+
+  padding: 12px 14px;
+
+  border-radius: 11px;
+
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.create-pool-message.error {
+  border: 1px solid var(--danger);
+
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+
+.create-pool-message.neutral {
+  border: 1px solid var(--border);
+
+  background: var(--surface-soft);
+  color: var(--text-secondary);
+}
+
+.create-pool-review-heading > div {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 10px;
+}
+
+.create-pool-step-back {
+  width: 32px;
+  height: 32px;
+
+  flex: 0 0 32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: 1px solid var(--border);
+  border-radius: 10px;
+
+  background: var(--surface-soft);
+  color: var(--text);
+
+  cursor: pointer;
+}
+
+.create-pool-step-back:hover:not(:disabled) {
+  background: var(--surface-hover);
+}
+
+.create-pool-review-pair {
+  display: flex;
+  align-items: center;
+
+  gap: 14px;
+
+  padding: 18px;
+
+  border: 1px solid var(--border);
+  border-radius: 15px;
+
+  background: var(--surface-soft);
+}
+
+.create-pool-review-icons {
+  display: flex;
+  align-items: center;
+}
+
+.create-pool-review-icons
+.create-pool-token-logo +
+.create-pool-token-logo {
+  margin-left: -9px;
+}
+
+.create-pool-review-pair h3 {
+  margin: 0 0 4px;
+
+  color: var(--text);
+
+  font-size: 18px;
+}
+
+.create-pool-review-pair span {
+  color: var(--text-muted);
+
+  font-size: 11px;
+}
+
+.create-pool-review-table {
+  margin-top: 14px;
+
+  border: 1px solid var(--border);
+  border-radius: 14px;
+
+  overflow: hidden;
+}
+
+.create-pool-review-table > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding: 12px 14px;
+
+  border-bottom: 1px solid var(--border);
+}
+
+.create-pool-review-table > div:last-child {
+  border-bottom: 0;
+}
+
+.create-pool-review-table span {
+  color: var(--text-secondary);
+
+  font-size: 11px;
+}
+
+.create-pool-review-table strong {
+  color: var(--text);
+
+  font-size: 12px;
+}
+
+.create-pool-addresses {
+  margin-top: 14px;
+
+  display: grid;
+
+  gap: 8px;
+}
+
+.create-pool-addresses > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 14px;
+
+  padding: 11px 13px;
+
+  border: 1px solid var(--border);
+  border-radius: 11px;
+
+  background: var(--surface-soft);
+}
+
+.create-pool-addresses span {
+  flex: 0 0 auto;
+
+  color: var(--text-secondary);
+
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.create-pool-addresses code {
+  min-width: 0;
+
+  overflow: hidden;
+
+  color: var(--text-muted);
+
+  font-size: 10px;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.create-pool-transaction-note {
+  margin-top: 15px;
+
+  padding: 14px;
+
+  border: 1px solid var(--border);
+  border-radius: 12px;
+
+  background: var(--surface-soft);
+}
+
+.create-pool-transaction-note strong {
+  display: block;
+
+  margin-bottom: 4px;
+
+  color: var(--text);
+
+  font-size: 12px;
+}
+
+.create-pool-transaction-note p {
+  margin: 0;
+
+  color: var(--text-secondary);
+
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.create-pool-result {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 12px;
+
+  margin-top: 16px;
+
+  padding: 15px;
+
+  border-radius: 13px;
+}
+
+.create-pool-result.existing {
+  border: 1px solid var(--accent);
+
+  background: var(--accent-soft);
+}
+
+.create-pool-result.success {
+  border: 1px solid var(--green);
+
+  background:
+    color-mix(
+      in srgb,
+      var(--green) 8%,
+      var(--surface)
+    );
+}
+
+.create-pool-result-icon {
+  width: 27px;
+  height: 27px;
+
+  flex: 0 0 27px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: var(--surface);
+
+  color: var(--accent);
+
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.create-pool-result.success
+.create-pool-result-icon {
+  color: var(--green);
+}
+
+.create-pool-result-copy {
+  min-width: 0;
+
+  flex: 1;
+}
+
+.create-pool-result-copy strong {
+  display: block;
+
+  margin-bottom: 4px;
+
+  color: var(--text);
+
+  font-size: 12px;
+}
+
+.create-pool-result-copy p {
+  margin: 0 0 10px;
+
+  color: var(--text-secondary);
+
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.create-pool-result-copy span {
+  display: block;
+
+  margin-top: 8px;
+  margin-bottom: 4px;
+
+  color: var(--text-muted);
+
+  font-size: 10px;
+}
+
+.create-pool-result-copy code {
+  display: block;
+
+  padding: 8px 9px;
+
+  overflow-wrap: anywhere;
+
+  border: 1px solid var(--border);
+  border-radius: 8px;
+
+  background: var(--surface);
+
+  color: var(--text-secondary);
+
+  font-size: 10px;
+}
+
+@media (max-width: 900px) {
+  .create-pool-workspace {
+    grid-template-columns:
+      1fr;
+  }
+
+  .create-pool-steps {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+  }
+
+  .create-pool-step {
+    flex: 1;
+  }
+
+  .create-pool-step-line {
+    width: 32px;
+    height: 1px;
+
+    flex: 0 0 32px;
+
+    margin: 0;
+
+    background: var(--border);
+  }
+}
+
+@media (max-width: 680px) {
+  .create-pool-page {
+    padding:
+      20px
+      14px
+      60px;
+  }
+
+  .create-pool-breadcrumb {
+    margin-bottom: 18px;
+  }
+
+  .create-pool-topbar {
+    margin-bottom: 20px;
+  }
+
+  .create-pool-title-button strong {
+    font-size: 18px;
+  }
+
+  .create-pool-main-card {
+    padding: 16px;
+
+    border-radius: 17px;
+  }
+
+  .create-pool-pair-selector {
+    grid-template-columns:
+      1fr;
+
+    gap: 8px;
+  }
+
+  .create-pool-switch-token {
+    transform: rotate(90deg);
+  }
+
+  .create-pool-switch-token:hover:not(:disabled) {
+    transform:
+      rotate(270deg);
+  }
+
+  .create-pool-config-grid {
+    grid-template-columns:
+      1fr;
+  }
+
+  .create-pool-steps {
+    padding: 15px;
+  }
+
+  .create-pool-step-copy strong {
+    font-size: 11px;
+  }
+
+  .create-pool-step-copy span {
+    font-size: 9px;
+  }
+}
+
+@media (max-width: 480px) {
+  .create-pool-topbar {
+    align-items: flex-start;
+  }
+
+  .create-pool-reset-button {
+    padding: 0 9px;
+  }
+
+  .create-pool-steps {
+    align-items: flex-start;
+  }
+
+  .create-pool-step-line {
+    width: 14px;
+
+    flex-basis: 14px;
+
+    margin-top: 14px;
+  }
+
+  .create-pool-step-marker {
+    width: 24px;
+    height: 24px;
+
+    flex-basis: 24px;
+  }
+
+  .create-pool-addresses > div {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .create-pool-addresses code {
+    width: 100%;
+
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+}

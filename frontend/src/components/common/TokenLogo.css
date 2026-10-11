@@ -1,0 +1,17 @@
+.token-logo {
+  display: inline-flex;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--surface-soft);
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 750;
+}
+.token-logo img { width: 100%; height: 100%; object-fit: cover; }
+.token-logo > span { display: flex; width: 100%; height: 100%; align-items: center; justify-content: center; }

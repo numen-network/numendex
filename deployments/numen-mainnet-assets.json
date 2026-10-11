@@ -1,0 +1,24 @@
+{
+  "protocol": "Numen Asset Protocol",
+  "deploymentType": "mainnet",
+  "network": {
+    "name": "numenMainnet",
+    "chainId": "32026"
+  },
+  "deployer": "0x478C47d215bbfc43F25FAB48B4100bB1BbE1a6Dc",
+  "gasPriceWei": "501000000000",
+  "gasPriceGwei": "501.0",
+  "updatedAt": "2026-10-05T19:58:42.900Z",
+  "contracts": {
+    "NumenAssetRegistry": "0x3F77cA1b0B15296dcD81299e57d341f81DF57236",
+    "NumenObjectRegistry": "0x98957364daF6F78930487be8F7717Ce84462BdBb",
+    "NumenMetadataRegistry": "0xFd4a3d0c6f2Ed3017c44EC082D469DE7f4ee092B",
+    "NumenObjectBinding": "0x52D003D576B5f4F4A9108005042F6A90729F6B66",
+    "NumenAttestationRegistry": "0x2e9B218ae923C8c04C0B0342153c1248A6028709",
+    "NumenDocumentRegistry": "0x3750738D255cD02434355319327E18F879a98d6c",
+    "NumenProvenanceRegistry": "0xD422931A97E2B79364B43C3262b96dc5aC87e857",
+    "NumenFungibleFactory": "0xB6756C35E1E94E47857A417D56D2C915b1D1E2a9",
+    "NumenERC721Factory": "0xCEe57627B8941EA3B6c153dc5678e080b75DD442",
+    "NumenERC1155Factory": "0x0a74f9B21cB85f07CF51d82FA84d2630e214b032"
+  }
+}

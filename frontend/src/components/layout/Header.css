@@ -1,0 +1,870 @@
+/* =========================================================
+   NUMENDEX HEADER — PREMIUM RESPONSIVE
+   ========================================================= */
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  width: 100%;
+  border-bottom: 1px solid color-mix(in srgb, var(--border) 78%, transparent);
+  background: color-mix(in srgb, var(--header) 82%, transparent);
+  backdrop-filter: blur(28px) saturate(155%);
+  -webkit-backdrop-filter: blur(28px) saturate(155%);
+}
+
+.topbar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      circle at 12% -120%,
+      color-mix(in srgb, var(--accent) 12%, transparent),
+      transparent 42%
+    ),
+    radial-gradient(
+      circle at 88% -150%,
+      rgba(77, 174, 255, 0.08),
+      transparent 38%
+    );
+}
+
+.topbar::after {
+  content: "";
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  bottom: -1px;
+  height: 1px;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--accent) 36%, transparent),
+    rgba(84, 175, 255, 0.18),
+    transparent
+  );
+  opacity: 0.72;
+}
+
+/* =========================================================
+   HEADER INNER
+   ========================================================= */
+
+.topbar-inner {
+  width: 100%;
+  max-width: 1500px;
+  min-height: 76px;
+  margin: 0 auto;
+  padding: 0 28px;
+  display: grid;
+  grid-template-columns: minmax(230px, 1fr) auto minmax(230px, 1fr);
+  align-items: center;
+  gap: 24px;
+}
+
+/* =========================================================
+   BRAND
+   ========================================================= */
+
+.brand {
+  justify-self: start;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 5px 8px 5px 4px;
+  border: 0;
+  border-radius: 15px;
+  color: var(--text);
+  background: transparent;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
+  transition:
+    background 0.18s ease,
+    transform 0.18s ease;
+}
+
+.brand:hover {
+  background: color-mix(in srgb, var(--surface-soft) 72%, transparent);
+}
+
+.brand:active {
+  transform: translateY(1px);
+}
+
+.brand-logo-shell {
+  position: relative;
+  width: 46px;
+  height: 46px;
+  flex: 0 0 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid color-mix(in srgb, var(--accent) 24%, var(--border));
+  border-radius: 15px;
+  background:
+    radial-gradient(
+      circle at 28% 20%,
+      color-mix(in srgb, var(--accent) 18%, transparent),
+      transparent 50%
+    ),
+    linear-gradient(
+      145deg,
+      color-mix(in srgb, var(--accent) 9%, var(--surface)),
+      var(--surface-soft)
+    );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 8px 24px rgba(0, 0, 0, 0.07),
+    0 0 28px color-mix(in srgb, var(--accent) 7%, transparent);
+}
+
+.brand-logo-shell::after {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  z-index: -1;
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--accent) 9%, transparent);
+  filter: blur(12px);
+  opacity: 0;
+  transition: opacity 0.18s ease;
+}
+
+.brand:hover .brand-logo-shell::after {
+  opacity: 1;
+}
+
+.brand-copy {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.brand-name {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--text);
+  font-size: 17px;
+  font-weight: 850;
+  line-height: 1;
+  letter-spacing: 1.65px;
+  white-space: nowrap;
+}
+
+.brand-name strong {
+  color: var(--accent);
+}
+
+.brand-subtitle {
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.42px;
+  white-space: nowrap;
+}
+
+/* =========================================================
+   MAIN NAVIGATION
+   ========================================================= */
+
+.main-navigation {
+  justify-self: center;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 4px;
+  border: 1px solid color-mix(in srgb, var(--border) 86%, transparent);
+  border-radius: 17px;
+  background: color-mix(in srgb, var(--surface-soft) 70%, transparent);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.045),
+    0 7px 24px rgba(0, 0, 0, 0.025);
+}
+
+.nav-link {
+  position: relative;
+  min-width: 78px;
+  height: 42px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border: 0;
+  border-radius: 13px;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  transition:
+    background 0.18s ease,
+    color 0.18s ease,
+    box-shadow 0.18s ease,
+    transform 0.18s ease;
+}
+
+.nav-link:hover {
+  color: var(--text);
+  background: var(--surface-hover);
+}
+
+.nav-link:active {
+  transform: scale(0.98);
+}
+
+.nav-link.active {
+  color: var(--text);
+  background:
+    linear-gradient(
+      145deg,
+      color-mix(in srgb, var(--surface) 96%, var(--accent) 4%),
+      var(--surface)
+    );
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.08),
+    0 8px 22px rgba(0, 0, 0, 0.045),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.nav-active-dot {
+  width: 5px;
+  height: 5px;
+  flex: 0 0 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--accent) 9%, transparent),
+    0 0 9px color-mix(in srgb, var(--accent) 55%, transparent);
+}
+
+/* =========================================================
+   ACTIONS / NETWORK
+   ========================================================= */
+
+.topbar-actions {
+  justify-self: end;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.network-chip {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 0 12px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  color: var(--text-secondary);
+  background: color-mix(in srgb, var(--surface-soft) 88%, transparent);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035);
+  transition:
+    border-color 0.18s ease,
+    background 0.18s ease;
+}
+
+.network-chip-online {
+  border-color: color-mix(in srgb, var(--green) 25%, var(--border));
+}
+
+.network-chip-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  line-height: 1.05;
+}
+
+.network-chip-copy small {
+  color: var(--text-muted);
+  font-size: 8.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+}
+
+.network-chip-copy strong {
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 720;
+}
+
+.network-status {
+  width: 8px;
+  height: 8px;
+  flex: 0 0 8px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--green) 10%, transparent),
+    0 0 11px rgba(29, 166, 108, 0.42);
+}
+
+.network-status-offline {
+  background: var(--text-muted);
+  box-shadow: none;
+}
+
+/* =========================================================
+   THEME BUTTON
+   ========================================================= */
+
+.icon-button,
+.toolbar-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  background: color-mix(in srgb, var(--surface-soft) 88%, transparent);
+  cursor: pointer;
+  transition:
+    border-color 0.18s ease,
+    background 0.18s ease,
+    color 0.18s ease,
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.icon-button {
+  width: 44px;
+  height: 44px;
+  flex: 0 0 44px;
+  border-radius: 14px;
+  font-size: 18px;
+}
+
+.icon-button:hover,
+.toolbar-icon:hover {
+  color: var(--text);
+  border-color: var(--border-strong);
+  background: var(--surface-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 7px 20px rgba(0, 0, 0, 0.045);
+}
+
+.theme-icon {
+  display: block;
+  line-height: 1;
+}
+
+/* =========================================================
+   WALLET
+   ========================================================= */
+
+.wallet-control {
+  position: relative;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+}
+
+.connect-button {
+  min-width: 132px;
+  max-width: 190px;
+  height: 44px;
+  padding: 0 17px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid color-mix(in srgb, var(--accent) 72%, transparent);
+  border-radius: 14px;
+  color: #ffffff;
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--accent) 96%, #ffffff 4%),
+      color-mix(in srgb, var(--accent) 80%, #000000)
+    );
+  box-shadow:
+    0 8px 22px color-mix(in srgb, var(--accent) 19%, transparent),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 750;
+  white-space: nowrap;
+  overflow: hidden;
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    color 0.18s ease,
+    transform 0.18s ease;
+}
+
+.connect-button > span:not(.wallet-status-dot):not(.wallet-chevron) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.connect-button:hover:not(:disabled) {
+  background:
+    linear-gradient(
+      135deg,
+      var(--accent-hover),
+      color-mix(in srgb, var(--accent-hover) 80%, #000000)
+    );
+  box-shadow:
+    0 10px 28px color-mix(in srgb, var(--accent) 25%, transparent),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  transform: translateY(-1px);
+}
+
+.connect-button.wallet-connected {
+  color: var(--text);
+  border-color: var(--border-strong);
+  background: color-mix(in srgb, var(--surface-soft) 92%, transparent);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035);
+}
+
+.connect-button.wallet-connected:hover:not(:disabled) {
+  color: var(--text);
+  background: var(--surface-hover);
+  box-shadow: 0 7px 20px rgba(0, 0, 0, 0.04);
+}
+
+.wallet-status-dot {
+  width: 7px;
+  height: 7px;
+  flex: 0 0 7px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 8px rgba(29, 166, 108, 0.45);
+}
+
+.connect-button:disabled {
+  opacity: 0.58;
+  cursor: default;
+  transform: none;
+}
+
+.wallet-chevron {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 1px;
+  color: var(--text-muted);
+  font-size: 11px;
+  line-height: 1;
+  transition: transform 0.18s ease;
+}
+
+.wallet-chevron.open {
+  transform: rotate(180deg);
+}
+
+/* =========================================================
+   WALLET MENU
+   ========================================================= */
+
+.wallet-menu {
+  position: absolute;
+  top: calc(100% + 11px);
+  right: 0;
+  z-index: 100;
+  width: min(250px, calc(100vw - 24px));
+  padding: 8px;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--border) 92%, transparent);
+  border-radius: 17px;
+  background: color-mix(in srgb, var(--surface) 96%, transparent);
+  backdrop-filter: blur(24px) saturate(145%);
+  -webkit-backdrop-filter: blur(24px) saturate(145%);
+  box-shadow:
+    0 22px 60px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.045);
+  transform-origin: top right;
+  animation: wallet-menu-enter 0.16s ease;
+}
+
+@keyframes wallet-menu-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-5px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.wallet-menu-header {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 11px 11px 12px;
+}
+
+.wallet-menu-header strong {
+  overflow: hidden;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 750;
+  letter-spacing: 0.15px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.wallet-menu-header small {
+  overflow: hidden;
+  color: var(--text-muted);
+  font-size: 10px;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.wallet-menu-status {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--text-secondary);
+  font-size: 11px;
+  font-weight: 650;
+}
+
+.wallet-menu-status > span {
+  width: 7px;
+  height: 7px;
+  flex: 0 0 7px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 8px rgba(29, 166, 108, 0.5);
+}
+
+.wallet-menu-divider {
+  height: 1px;
+  margin: 4px 5px;
+  background: var(--border);
+}
+
+.wallet-menu-item {
+  width: 100%;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 11px;
+  color: var(--text-secondary);
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  transition:
+    color 0.15s ease,
+    background 0.15s ease;
+}
+
+.wallet-menu-item:hover {
+  color: var(--text);
+  background: var(--surface-hover);
+}
+
+.wallet-menu-icon {
+  width: 25px;
+  height: 25px;
+  flex: 0 0 25px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  color: var(--text-secondary);
+  background: var(--surface-soft);
+  font-size: 12px;
+}
+
+.wallet-menu-disconnect {
+  color: #e45858;
+}
+
+.wallet-menu-disconnect:hover {
+  color: #e45858;
+  background: rgba(228, 88, 88, 0.08);
+}
+
+.wallet-menu-disconnect .wallet-menu-icon {
+  color: #e45858;
+  background: rgba(228, 88, 88, 0.08);
+}
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+.brand:focus-visible,
+.nav-link:focus-visible,
+.icon-button:focus-visible,
+.connect-button:focus-visible,
+.wallet-menu-item:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--accent) 72%, transparent);
+  outline-offset: 2px;
+}
+
+/* =========================================================
+   RESPONSIVE — LAPTOP / TABLET
+   ========================================================= */
+
+@media (max-width: 1120px) {
+  .topbar-inner {
+    padding: 0 20px;
+    grid-template-columns: auto 1fr auto;
+    gap: 16px;
+  }
+
+  .brand-subtitle {
+    display: none;
+  }
+
+  .network-chip-copy small {
+    display: none;
+  }
+
+  .nav-link {
+    min-width: 72px;
+    padding: 0 13px;
+  }
+}
+
+@media (max-width: 920px) {
+  .topbar-inner {
+    min-height: 72px;
+    padding: 10px 16px 11px;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 10px 12px;
+  }
+
+  .brand {
+    min-width: 0;
+  }
+
+  .main-navigation {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    width: 100%;
+    justify-self: stretch;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+  }
+
+  .main-navigation::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav-link {
+    flex: 1 0 auto;
+    min-width: 84px;
+  }
+
+  .network-chip {
+    height: 42px;
+  }
+}
+
+/* =========================================================
+   RESPONSIVE — MOBILE
+   ========================================================= */
+
+@media (max-width: 640px) {
+  .topbar {
+    background: color-mix(in srgb, var(--header) 90%, transparent);
+  }
+
+  .topbar-inner {
+    padding: 8px 12px 9px;
+    gap: 8px 10px;
+  }
+
+  .brand {
+    gap: 8px;
+    padding-left: 1px;
+  }
+
+  .brand-logo-shell {
+    width: 40px;
+    height: 40px;
+    flex-basis: 40px;
+    border-radius: 13px;
+  }
+
+  .brand-name {
+    font-size: 14.5px;
+    letter-spacing: 1.25px;
+  }
+
+  .brand-subtitle,
+  .network-chip {
+    display: none;
+  }
+
+  .topbar-actions {
+    gap: 6px;
+  }
+
+  .icon-button {
+    width: 40px;
+    height: 40px;
+    flex-basis: 40px;
+    border-radius: 12px;
+    font-size: 17px;
+  }
+
+  .connect-button {
+    min-width: 0;
+    max-width: 142px;
+    height: 40px;
+    padding: 0 12px;
+    border-radius: 12px;
+    font-size: 12px;
+  }
+
+  .main-navigation {
+    gap: 2px;
+    padding: 3px;
+    border-radius: 14px;
+    scroll-snap-type: x proximity;
+  }
+
+  .nav-link {
+    height: 39px;
+    min-width: 74px;
+    padding: 0 10px;
+    border-radius: 11px;
+    font-size: 12px;
+    scroll-snap-align: center;
+  }
+
+  .nav-active-dot {
+    display: none;
+  }
+
+  .wallet-menu {
+    top: calc(100% + 8px);
+    width: min(236px, calc(100vw - 24px));
+  }
+}
+
+/* =========================================================
+   RESPONSIVE — COMPACT MOBILE
+   ========================================================= */
+
+@media (max-width: 430px) {
+  .topbar-inner {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .brand-logo-shell {
+    width: 38px;
+    height: 38px;
+    flex-basis: 38px;
+    border-radius: 12px;
+  }
+
+  .brand-name {
+    font-size: 13px;
+    letter-spacing: 1px;
+  }
+
+  .brand-name span {
+    display: none;
+  }
+
+  .brand-name strong::before {
+    content: "NUMEN ";
+    color: var(--text);
+  }
+
+  .icon-button {
+    width: 38px;
+    height: 38px;
+    flex-basis: 38px;
+    border-radius: 11px;
+  }
+
+  .connect-button {
+    max-width: 122px;
+    height: 38px;
+    padding: 0 10px;
+    border-radius: 11px;
+    font-size: 11.5px;
+  }
+
+  .main-navigation {
+    justify-content: flex-start;
+  }
+
+  .nav-link {
+    flex: 1 0 auto;
+    min-width: 72px;
+    height: 38px;
+    padding: 0 8px;
+    font-size: 11.5px;
+  }
+}
+
+/* =========================================================
+   VERY SMALL DEVICES
+   ========================================================= */
+
+@media (max-width: 360px) {
+  .brand-logo-shell {
+    width: 36px;
+    height: 36px;
+    flex-basis: 36px;
+  }
+
+  .brand-name {
+    font-size: 12px;
+  }
+
+  .icon-button {
+    width: 36px;
+    height: 36px;
+    flex-basis: 36px;
+  }
+
+  .connect-button {
+    max-width: 108px;
+    height: 36px;
+    padding: 0 9px;
+    font-size: 11px;
+  }
+
+  .nav-link {
+    min-width: 68px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand,
+  .nav-link,
+  .icon-button,
+  .toolbar-icon,
+  .connect-button,
+  .wallet-chevron,
+  .wallet-menu {
+    transition: none;
+    animation: none;
+  }
+}

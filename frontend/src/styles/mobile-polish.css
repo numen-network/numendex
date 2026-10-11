@@ -1,0 +1,601 @@
+/* =========================================================
+   NUMENDEX — FINAL VISUAL / ACCESSIBILITY / MOBILE PASS
+   This file intentionally loads last and normalizes typography,
+   spacing, touch targets, token-logo layout and responsive tables.
+   ========================================================= */
+
+:root {
+  --ui-text-xs: 12px;
+  --ui-text-sm: 13px;
+  --ui-text-md: 14px;
+  --ui-text-base: 15px;
+  --ui-text-lg: 17px;
+  --ui-touch: 44px;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+img, svg { max-width: 100%; }
+button, input, select, textarea { font-size: 16px; }
+button, [role="button"], a { touch-action: manipulation; }
+
+/* Never let a logo crush text or vice versa. */
+.token-logo,
+.generic-token-logo,
+.selected-token-logo,
+.create-pool-token-logo,
+.liquidity-token-logo,
+.portfolio-avatar,
+.pool-token-icons,
+.position-token-icons,
+.explore-pair-icons,
+.token-detail-pair-icons,
+.liquidity-pair-icons,
+.pool-detail-token-icons,
+.selected-token-logo-wrap,
+.token-row-logo-wrap {
+  flex: 0 0 auto;
+}
+
+.token-logo img,
+.generic-token-logo img,
+.selected-token-logo img,
+.create-pool-token-logo img,
+.liquidity-token-logo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.explore-token-cell,
+.explore-pool-cell,
+.pool-table-pool,
+.pool-table-pool-cell,
+.pool-table-pool-heading,
+.portfolio-token-cell,
+.position-pair,
+.liquidity-pair-title,
+.token-detail-identity,
+.token-detail-title-row,
+.pool-detail-title-row,
+.token-row-left,
+.token-selector-token-info,
+.create-pool-token-button-left {
+  min-width: 0;
+}
+
+.explore-token-cell,
+.explore-pool-cell,
+.pool-table-pool,
+.portfolio-token-cell,
+.position-pair,
+.liquidity-pair-title,
+.token-row-left,
+.token-selector-token-info {
+  gap: 10px;
+}
+
+.explore-token-cell > div:last-child,
+.explore-pool-cell > div:last-child,
+.pool-table-pool-info,
+.portfolio-token-cell > div:last-child,
+.position-pair-info,
+.token-row-details,
+.token-selector-token-info > div:last-child {
+  min-width: 0;
+}
+
+/* Readability floor: labels that were 8–11px are too small on phones. */
+.brand-subtitle,
+.network-chip-copy,
+.wallet-menu-status,
+.footer-network-label,
+.footer-copyright,
+.footer-legal,
+.explore-table th,
+.explore-token-cell small,
+.explore-pool-cell small,
+.pool-table th,
+.pool-table-pool-fee,
+.pool-detail-stat-label,
+.pool-detail-version,
+.pool-detail-address,
+.pool-detail-chart-label,
+.pool-detail-depth-caption,
+.portfolio-wallet-identity small,
+.portfolio-value-block small,
+.portfolio-clean-table th,
+.portfolio-token-cell small,
+.portfolio-stat-list small,
+.token-detail-address,
+.token-detail-market small,
+.token-detail-stats small,
+.token-detail-table th,
+.create-pool-breadcrumb,
+.create-pool-step-copy,
+.create-pool-token-button-text small,
+.create-pool-review-table small,
+.asset-studio-breadcrumb,
+.asset-studio-step-copy,
+.asset-studio-field-counter,
+.asset-studio-type-grid small,
+.asset-studio-review-row small,
+.liquidity-muted,
+.liquidity-info-row span,
+.token-row-address,
+.token-selector-section-label,
+.token-selector-import-label,
+.protocol-note {
+  font-size: var(--ui-text-xs) !important;
+  line-height: 1.45;
+}
+
+.explore-table td,
+.pool-table td,
+.pool-transactions-table td,
+.token-detail-table td,
+.portfolio-clean-table td,
+.portfolio-liquidity-table td,
+.portfolio-activity-table td,
+.create-pool-review-table td {
+  font-size: var(--ui-text-md) !important;
+  line-height: 1.45;
+}
+
+.explore-token-cell strong,
+.explore-pool-cell strong,
+.pool-table-pool-name,
+.portfolio-token-cell strong,
+.position-pair-name,
+.token-row-name,
+.token-selector-token-info strong {
+  font-size: var(--ui-text-base) !important;
+  line-height: 1.3;
+}
+
+/* Inputs/buttons: readable and finger friendly. */
+.primary-action,
+.pools-action-primary,
+.pools-action-secondary,
+.position-manage-button,
+.pool-detail-liquidity-button,
+.pool-detail-remove-liquidity-button,
+.pool-detail-swap-button,
+.create-pool-primary-button,
+.create-pool-secondary-button,
+.asset-studio-primary-button,
+.asset-studio-secondary-button,
+.remove-liquidity-submit,
+.liquidity-token-button,
+.liquidity-select-token,
+.token-selector-close,
+.token-retry-button {
+  min-height: var(--ui-touch);
+}
+
+.explore-search input,
+.portfolio-search input,
+.token-selector-search-wrap input,
+.token-search-container input,
+.asset-studio-field input,
+.asset-studio-field textarea,
+.asset-studio-field select {
+  min-height: 44px;
+  font-size: 16px !important;
+}
+
+/* Tables: desktop remains a table; smaller screens get safe horizontal scrolling. */
+.explore-table-wrap,
+.pool-table-scroll,
+.pool-transactions-scroll,
+.token-detail-table-wrap,
+.portfolio-clean-table-wrap {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-gutter: stable;
+}
+
+.explore-table,
+.pool-table,
+.pool-transactions-table,
+.token-detail-table,
+.portfolio-clean-table {
+  white-space: nowrap;
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+@media (max-width: 1024px) {
+  .main-content {
+    width: 100%;
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .explore-page,
+  .token-detail-page,
+  .portfolio-page,
+  .pools-page,
+  .pool-detail-page,
+  .add-liquidity-page,
+  .create-pool-page-inner,
+  .asset-studio-page-inner {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .pool-detail-layout,
+  .liquidity-layout,
+  .portfolio-overview,
+  .portfolio-overview-lower {
+    grid-template-columns: 1fr !important;
+  }
+
+  .pool-detail-sidebar,
+  .liquidity-sidebar,
+  .portfolio-overview-side,
+  .portfolio-overview-rail {
+    width: 100%;
+    max-width: none;
+  }
+
+  .asset-studio-workspace {
+    grid-template-columns: 220px minmax(0, 1fr) !important;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+@media (max-width: 760px) {
+  :root {
+    --ui-text-xs: 12px;
+    --ui-text-sm: 13px;
+    --ui-text-md: 14px;
+    --ui-text-base: 15px;
+  }
+
+  body { font-size: 15px; }
+
+  .main-content {
+    padding: 22px 12px calc(108px + env(safe-area-inset-bottom));
+  }
+
+  /* Header: no overlap, horizontal nav remains reachable. */
+  .topbar {
+    min-height: 66px;
+    height: auto !important;
+    padding: 10px 12px !important;
+  }
+
+  .topbar-inner {
+    gap: 10px;
+  }
+
+  .brand-copy { min-width: 0; }
+  .brand-name { font-size: 15px !important; }
+  .brand-subtitle { display: none; }
+  .brand-logo-shell { flex: 0 0 auto; }
+  .topbar-actions { min-width: 0; gap: 7px !important; }
+  .connect-button { min-height: 42px; font-size: 13px !important; }
+  .icon-button { min-width: 42px; min-height: 42px; }
+
+  .main-navigation {
+    bottom: max(10px, env(safe-area-inset-bottom));
+    gap: 3px;
+  }
+
+  .nav-link {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px !important;
+  }
+
+  /* Page headers/toolbars wrap instead of colliding. */
+  .explore-market-toolbar,
+  .portfolio-wallet-header,
+  .portfolio-tab-actions,
+  .pools-intro,
+  .pools-actions,
+  .pool-detail-header,
+  .pool-detail-actions,
+  .liquidity-card-header,
+  .create-pool-topbar,
+  .create-pool-topbar-actions,
+  .asset-studio-topbar,
+  .asset-studio-topbar-actions,
+  .asset-studio-section-heading-row,
+  .positions-heading-row {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .explore-toolbar-actions,
+  .portfolio-wallet-actions,
+  .pools-actions,
+  .pool-detail-actions,
+  .create-pool-topbar-actions,
+  .asset-studio-topbar-actions {
+    width: 100%;
+  }
+
+  .explore-search,
+  .portfolio-search {
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  .explore-tabs,
+  .portfolio-tabs,
+  .pool-detail-tabs,
+  .token-detail-bottom-tabs,
+  .token-detail-periods,
+  .chart-periods,
+  .portfolio-range-switcher {
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .explore-tabs::-webkit-scrollbar,
+  .portfolio-tabs::-webkit-scrollbar,
+  .pool-detail-tabs::-webkit-scrollbar,
+  .token-detail-bottom-tabs::-webkit-scrollbar,
+  .token-detail-periods::-webkit-scrollbar,
+  .chart-periods::-webkit-scrollbar,
+  .portfolio-range-switcher::-webkit-scrollbar { display: none; }
+
+  .explore-tabs button,
+  .portfolio-tabs button,
+  .pool-detail-tabs button,
+  .token-detail-bottom-tabs button,
+  .token-detail-periods button,
+  .chart-periods button,
+  .portfolio-range-switcher button {
+    min-height: 40px;
+    font-size: 13px !important;
+    flex: 0 0 auto;
+  }
+
+  /* Swap */
+  .swap-home-hero { margin: 4px auto 20px; }
+  .swap-home-hero h1 { font-size: clamp(34px, 10vw, 46px); }
+  .swap-home-hero p { font-size: 15px; line-height: 1.55; }
+  .swap-box { border-radius: 22px; }
+  .asset-panel { padding: 16px !important; }
+  .asset-main-row { align-items: center; }
+  .swap-amount { min-width: 0; font-size: clamp(32px, 10vw, 40px) !important; }
+  .token-side { min-width: 122px !important; max-width: 46% !important; }
+  .selected-token-button, .select-token-button { min-height: 46px; }
+  .token-balance, .usd-value { font-size: 13px !important; }
+  .quick-amount-buttons button { min-height: 30px; font-size: 12px !important; }
+  .protocol-note { font-size: 12px !important; line-height: 1.5; }
+
+  /* Explore / token detail */
+  .explore-page,
+  .token-detail-page,
+  .portfolio-page { margin-left: auto; margin-right: auto; }
+
+  .explore-table,
+  .explore-token-table,
+  .explore-pool-table,
+  .explore-transaction-table { min-width: 860px !important; }
+
+  .token-detail-hero,
+  .token-detail-header,
+  .token-detail-title-row,
+  .token-detail-header-actions {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .token-detail-identity { width: 100%; }
+  .token-detail-address { overflow-wrap: anywhere; word-break: break-word; }
+  .token-detail-market { grid-template-columns: 1fr !important; }
+  .token-detail-stats { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  .token-detail-table { min-width: 820px !important; }
+  .token-detail-swap { width: 100%; max-width: none !important; }
+
+  /* Pools */
+  .pools-intro h1 { font-size: clamp(30px, 9vw, 38px) !important; }
+  .pools-intro p { font-size: 15px !important; line-height: 1.55; }
+  .pools-actions > * { flex: 1 1 160px; }
+  .pools-summary-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  .pools-summary-card { min-width: 0; }
+  .pools-summary-value { font-size: clamp(23px, 7vw, 30px) !important; }
+  .pool-table { min-width: 840px !important; }
+  .pool-transactions-table { min-width: 760px !important; }
+  .pool-detail-title-area { min-width: 0; width: 100%; }
+  .pool-detail-title-row { align-items: flex-start; }
+  .pool-detail-address { overflow-wrap: anywhere; word-break: break-word; }
+  .pool-detail-stats { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  .pool-detail-chart { min-height: 300px; }
+  .pool-detail-liquidity-chart { min-width: 0; }
+
+  /* Portfolio */
+  .portfolio-wallet-identity { min-width: 0; }
+  .portfolio-wallet-identity > div:last-child { min-width: 0; }
+  .portfolio-wallet-identity strong,
+  .portfolio-wallet-identity small { overflow-wrap: anywhere; }
+  .portfolio-quick-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  .portfolio-token-table,
+  .portfolio-liquidity-table,
+  .portfolio-activity-table { min-width: 900px !important; }
+  .portfolio-value-block strong { font-size: clamp(32px, 10vw, 44px) !important; }
+
+  /* Add liquidity */
+  .liquidity-layout { gap: 16px; }
+  .liquidity-main-card, .liquidity-sidebar { border-radius: 20px; }
+  .liquidity-token-main-row { gap: 10px; }
+  .liquidity-token-main-row input { min-width: 0; font-size: clamp(28px, 9vw, 36px) !important; }
+  .liquidity-token-button { flex: 0 0 auto; max-width: 48%; }
+  .liquidity-info-row { gap: 12px; }
+  .liquidity-info-row > * { min-width: 0; overflow-wrap: anywhere; }
+
+  /* Create pool / Asset Studio: turn side-stepper into horizontal scroll. */
+  .create-pool-workspace,
+  .asset-studio-workspace {
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+  }
+
+  .create-pool-steps,
+  .asset-studio-steps {
+    display: flex !important;
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    gap: 8px !important;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .create-pool-steps::-webkit-scrollbar,
+  .asset-studio-steps::-webkit-scrollbar { display: none; }
+
+  .create-pool-step-line,
+  .asset-studio-step-line { display: none !important; }
+
+  .create-pool-step-copy,
+  .asset-studio-step-copy {
+    min-width: max-content;
+    font-size: 12px !important;
+  }
+
+  .create-pool-main-card,
+  .asset-studio-main-card { padding: 20px 16px !important; }
+
+  .create-pool-config-grid,
+  .create-pool-pair-selector,
+  .asset-studio-form-grid,
+  .asset-studio-type-grid,
+  .asset-studio-standard-grid,
+  .asset-studio-review-grid,
+  .asset-studio-feature-list {
+    grid-template-columns: 1fr !important;
+  }
+
+  .create-pool-token-button-left { min-width: 0; }
+  .create-pool-token-button-text { min-width: 0; }
+  .create-pool-token-button-text strong,
+  .create-pool-token-button-text small { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  .asset-studio-navigation { flex-wrap: wrap; gap: 10px; }
+  .asset-studio-navigation button { flex: 1 1 140px; }
+  .asset-studio-property-card-header { flex-wrap: wrap; gap: 10px; }
+
+  /* Modals / bottom sheets */
+  .token-selector-modal,
+  .remove-liquidity-panel {
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  .token-row { min-height: 62px; }
+  .token-row-name { font-size: 15px !important; }
+  .token-row-symbol, .token-row-address { font-size: 12px !important; }
+  .remove-liquidity-percentage-buttons { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+  /* Footer */
+  .footer-brand-description,
+  .footer-column-heading,
+  .footer-links-area a,
+  .footer-socials a { font-size: 13px !important; }
+}
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+@media (max-width: 480px) {
+  .main-content { padding-left: 10px; padding-right: 10px; }
+
+  .topbar { padding-left: 10px !important; padding-right: 10px !important; }
+  .brand-name { font-size: 14px !important; letter-spacing: .7px !important; }
+  .connect-button { max-width: 128px !important; padding-inline: 10px !important; }
+
+  .main-navigation { width: calc(100% - 16px) !important; }
+  .nav-link { padding-inline: 4px !important; font-size: 11.5px !important; }
+
+  .swap-home-hero h1 { font-size: 34px; }
+  .asset-panel { padding: 14px !important; }
+  .asset-main-row { gap: 8px !important; }
+  .swap-amount { font-size: 31px !important; }
+  .token-side { min-width: 116px !important; max-width: 48% !important; }
+  .selected-token-button, .select-token-button { padding-inline: 8px !important; font-size: 13px !important; }
+  .quick-amount-buttons { flex-wrap: wrap; }
+  .quick-amount-buttons button { min-width: 40px !important; }
+
+  .explore-market-panel,
+  .token-detail-section,
+  .portfolio-overview-section,
+  .pools-summary-card,
+  .pool-detail-main,
+  .pool-detail-sidebar,
+  .liquidity-main-card,
+  .liquidity-sidebar,
+  .create-pool-main-card,
+  .asset-studio-main-card {
+    border-radius: 18px !important;
+  }
+
+  .pools-summary-grid,
+  .pool-detail-stats,
+  .token-detail-stats,
+  .portfolio-quick-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .pool-detail-actions > *,
+  .pools-actions > * { width: 100%; flex-basis: 100%; }
+
+  .remove-liquidity-percentage-buttons { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+  .footer-links-area { grid-template-columns: 1fr 1fr !important; }
+}
+
+/* =========================================================
+   VERY SMALL DEVICES
+   ========================================================= */
+@media (max-width: 360px) {
+  .brand-name { display: none !important; }
+  .connect-button { max-width: 118px !important; }
+  .nav-link { font-size: 11px !important; }
+  .swap-amount { font-size: 29px !important; }
+  .token-side { min-width: 110px !important; }
+  .footer-links-area { grid-template-columns: 1fr !important; }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  button, a, input, select { min-height: 40px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

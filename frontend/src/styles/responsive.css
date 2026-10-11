@@ -1,0 +1,607 @@
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 950px) {
+  .main-content {
+    padding-top: 45px;
+  }
+
+  .trade-layout.chart-visible {
+    display: flex;
+
+    max-width: 560px;
+
+    flex-direction: column;
+
+    gap: 20px;
+  }
+
+  .trade-layout.chart-hidden {
+    max-width: 520px;
+  }
+
+  .market-card {
+    width: 100%;
+  }
+
+  .footer-main {
+    grid-template-columns:
+      1fr 1fr;
+
+    gap: 45px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 760px) {
+  .topbar {
+    height: 64px;
+
+    grid-template-columns:
+      1fr auto;
+
+    padding: 0 12px;
+  }
+
+  .brand {
+    gap: 8px;
+  }
+
+  .brand-name {
+    font-size: 15px;
+  }
+
+  .topbar-actions {
+    gap: 5px;
+  }
+
+  .network-chip {
+    display: none;
+  }
+
+  .main-navigation {
+    position: fixed;
+
+    z-index: 100;
+
+    left: 50%;
+    bottom: 12px;
+
+    width:
+      calc(100% - 24px);
+
+    max-width: 480px;
+
+    padding: 6px;
+
+    transform:
+      translateX(-50%);
+
+    border:
+      1px solid var(--border);
+
+    border-radius: 18px;
+
+    background:
+      var(--surface);
+
+    box-shadow:
+      var(--shadow-large);
+
+    backdrop-filter:
+      blur(20px);
+
+    -webkit-backdrop-filter:
+      blur(20px);
+  }
+
+  .nav-link {
+    flex: 1;
+
+    padding: 11px 5px;
+
+    text-align: center;
+
+    font-size: 12px;
+
+    white-space: nowrap;
+  }
+
+  .main-content {
+    max-width: none;
+    min-height: auto;
+
+    padding:
+      28px 10px 100px;
+  }
+
+  .trade-layout.chart-hidden,
+  .trade-layout.chart-visible {
+    width: 100%;
+    max-width: 540px;
+  }
+
+  .swap-toolbar {
+    min-height: 46px;
+  }
+
+  .asset-panel {
+    min-height: 170px;
+
+    padding: 17px;
+  }
+
+  .swap-amount {
+    font-size: 38px;
+  }
+
+  .token-side {
+    min-width: 135px;
+    max-width: 190px;
+  }
+
+  .market-card {
+    min-height: 380px;
+
+    border-radius: 21px;
+  }
+
+  .chart-placeholder {
+    height: 180px;
+  }
+
+  .protocol-note {
+    font-size: 12px;
+  }
+
+  .site-footer {
+    padding:
+      42px 20px 105px;
+  }
+
+  .footer-main {
+    grid-template-columns: 1fr;
+
+    gap: 42px;
+
+    padding-bottom: 36px;
+  }
+
+  .footer-links-area {
+    max-width: 420px;
+
+    grid-template-columns:
+      repeat(2, 1fr);
+
+    gap: 30px;
+  }
+
+  .footer-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+
+    gap: 15px;
+  }
+
+  .footer-copyright {
+    flex-wrap: wrap;
+  }
+
+  .footer-legal {
+    gap: 18px;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 520px) {
+  .brand-name {
+    display: flex;
+
+    font-size: 13px;
+    letter-spacing: 1.2px;
+  }
+
+  .icon-button {
+    width: 38px;
+    height: 38px;
+
+    font-size: 16px;
+  }
+
+  .connect-button {
+    max-width: 130px;
+
+    height: 38px;
+
+    padding: 0 11px;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    font-size: 12px;
+  }
+
+  .main-content {
+    padding:
+      20px 8px 95px;
+  }
+
+  .swap-toolbar {
+    padding: 0 3px;
+  }
+
+  .swap-tab {
+    font-size: 14px;
+  }
+
+  .toolbar-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .asset-panel {
+    min-height: 170px;
+
+    padding: 15px;
+
+    border-radius: 20px;
+  }
+
+  .asset-label-row {
+    font-size: 13px;
+  }
+
+  .quick-amount-buttons {
+    gap: 3px;
+  }
+
+  .quick-amount-buttons button {
+    min-width: 39px;
+
+    height: 25px;
+
+    padding: 0 6px;
+
+    font-size: 10px;
+  }
+
+  .quick-amount-buttons button:last-child {
+    min-width: 43px;
+  }
+
+  .asset-main-row {
+    gap: 10px;
+
+    margin-top: 13px;
+  }
+
+  .swap-amount {
+    font-size: 35px;
+  }
+
+  .token-side {
+    min-width: 125px;
+    max-width: 165px;
+
+    gap: 6px;
+  }
+
+  .selected-token-button,
+  .select-token-button {
+    height: 44px;
+
+    font-size: 14px;
+  }
+
+  .selected-token-button {
+    padding:
+      0 10px 0 6px;
+  }
+
+  .select-token-button {
+    padding: 0 14px;
+  }
+
+  .token-balance {
+    max-width: 165px;
+
+    font-size: 12px;
+  }
+
+  .usd-value {
+    font-size: 13px;
+  }
+
+  .primary-action {
+    height: 58px;
+
+    font-size: 15px;
+  }
+
+  .settings-popover {
+    position: fixed;
+
+    left: 10px;
+    right: 10px;
+    top: 74px;
+
+    width: auto;
+    max-width: none;
+  }
+
+  .market-card {
+    min-height: 350px;
+
+    padding: 17px;
+  }
+
+  .chart-placeholder {
+    height: 165px;
+  }
+
+  .market-price strong {
+    font-size: 30px;
+  }
+
+  .protocol-note {
+    padding: 13px;
+
+    font-size: 11px;
+  }
+
+  /* TOKEN SELECTOR */
+
+  .token-selector-overlay {
+    align-items: flex-end;
+
+    padding: 0;
+  }
+
+  .token-selector-modal {
+    max-width: none;
+    max-height: 82vh;
+
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+
+    border-radius:
+      26px 26px 0 0;
+
+    animation:
+      tokenModalMobileAppear
+      0.2s ease;
+  }
+
+  @keyframes tokenModalMobileAppear {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .token-selector-header {
+    padding:
+      20px 18px 13px;
+  }
+
+  .token-selector-header h2 {
+    font-size: 19px;
+  }
+
+  .token-search-container {
+    margin:
+      2px 16px 15px;
+  }
+
+  .token-list {
+    max-height: 50vh;
+  }
+
+  .token-row {
+    padding:
+      10px 9px;
+  }
+
+  .token-row-name {
+    max-width: 190px;
+  }
+
+  /* FOOTER */
+
+  .site-footer {
+    padding:
+      38px 16px 100px;
+  }
+
+  .footer-brand {
+    gap: 12px;
+  }
+
+  .footer-brand-name {
+    font-size: 16px;
+  }
+
+  .footer-brand p {
+    font-size: 13px;
+  }
+
+  .footer-socials {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+  .footer-socials a {
+    width: 100%;
+
+    justify-content: flex-start;
+  }
+
+  .footer-links-area {
+    width: 100%;
+
+    grid-template-columns:
+      repeat(2, 1fr);
+
+    gap: 24px;
+  }
+
+  .footer-link-column h3 {
+    font-size: 14px;
+  }
+
+  .footer-link-column a,
+  .footer-link-column button {
+    font-size: 13px;
+  }
+
+  .footer-copyright,
+  .footer-legal a {
+    font-size: 12px;
+  }
+}
+
+/* =========================================================
+   VERY SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 390px) {
+  .brand-name {
+    display: none;
+  }
+
+  .topbar {
+    padding: 0 9px;
+  }
+
+  .connect-button {
+    max-width: 120px;
+  }
+
+  .main-content {
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+
+  .asset-panel {
+    padding:
+      14px 12px;
+  }
+
+  .asset-label-row {
+    gap: 8px;
+  }
+
+  .quick-amount-buttons button {
+    min-width: 35px;
+
+    height: 24px;
+
+    padding: 0 5px;
+
+    font-size: 9px;
+  }
+
+  .quick-amount-buttons button:last-child {
+    min-width: 39px;
+  }
+
+  .asset-main-row {
+    gap: 7px;
+  }
+
+  .swap-amount {
+    font-size: 32px;
+  }
+
+  .token-side {
+    min-width: 115px;
+    max-width: 145px;
+  }
+
+  .selected-token-button,
+  .select-token-button {
+    height: 42px;
+
+    font-size: 13px;
+  }
+
+  .selected-token-button {
+    padding:
+      0 9px 0 5px;
+
+    gap: 6px;
+  }
+
+  .select-token-button {
+    padding:
+      0 12px;
+  }
+
+  .generic-token-logo {
+    width: 28px;
+    height: 28px;
+  }
+
+  .selected-token-logo {
+    width: 28px !important;
+    height: 28px !important;
+  }
+
+  .token-balance {
+    max-width: 145px;
+
+    font-size: 11px;
+  }
+
+  .nav-link {
+    font-size: 11px;
+  }
+
+  .token-selector-header {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .token-search-container {
+    margin-left: 13px;
+    margin-right: 13px;
+  }
+
+  .token-row-name {
+    max-width: 150px;
+  }
+
+  .footer-links-area {
+    gap: 18px;
+  }
+
+  .footer-socials {
+    gap: 7px;
+  }
+
+  .footer-socials a {
+    padding: 0 10px;
+
+    font-size: 12px;
+  }
+}
+
