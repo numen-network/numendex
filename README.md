@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# numendex
-=======
 # NumenDEX
 
 ## Install
@@ -31,4 +28,3 @@ npm run dev
 
 ## Token logos
 Put trusted PNG/WebP token images in `frontend/public/tokens/` and map each image by contract address in `frontend/src/config/tokenLogos.js`.
->>>>>>> 8649d32 (Update NumenDEX)
