@@ -85,21 +85,30 @@ function buildNumenPriceMap(pools) {
   return result;
 }
 
-function getSwapVolumeForToken(swap, pool, tokenAddress) {
-  const address = String(tokenAddress).toLowerCase();
-  if (address === String(pool.token0).toLowerCase()) {
-    return Math.max(
-      formatRaw(swap.amount0In, pool.token0Decimals),
-      formatRaw(swap.amount0Out, pool.token0Decimals)
-    );
+function getTokenSide(pool, tokenAddress) {
+  if (tokenAddress === String(pool.token0).toLowerCase()) return 0;
+  if (tokenAddress === String(pool.token1).toLowerCase()) return 1;
+  return null;
+}
+
+async function aggregatePairVolumes(windows) {
+  const swapVolume = (side) => ({
+    $max: [{ $toDecimal: `$amount${side}In` }, { $toDecimal: `$amount${side}Out` }],
+  });
+  const sumSince = (cutoff, side) => ({
+    $sum: { $cond: [{ $gte: ["$blockTimestamp", new Date(cutoff)] }, swapVolume(side), 0] },
+  });
+
+  const group = { _id: "$pairAddress", all0: { $sum: swapVolume(0) }, all1: { $sum: swapVolume(1) } };
+  for (const [key, cutoff] of Object.entries(windows)) {
+    group[`${key}0`] = sumSince(cutoff, 0);
+    group[`${key}1`] = sumSince(cutoff, 1);
   }
-  if (address === String(pool.token1).toLowerCase()) {
-    return Math.max(
-      formatRaw(swap.amount1In, pool.token1Decimals),
-      formatRaw(swap.amount1Out, pool.token1Decimals)
-    );
-  }
-  return 0;
+
+  const rows = await Swap.aggregate([{ $group: group }]);
+  return rows.map((row) =>
+    Object.fromEntries(Object.entries(row).map(([k, v]) => [k, k === "_id" ? v : v.toString()]))
+  );
 }
 
 async function getMarketSnapshot() {
@@ -131,8 +140,7 @@ async function getTokenMarketData() {
     volume1yUsd: now - 365 * 24 * 60 * 60 * 1000,
   };
 
-  const earliest = new Date(windows.volume1yUsd);
-  const swaps = await Swap.find({}).lean();
+  const volumeByPair = await aggregatePairVolumes(windows);
   const poolByAddress = new Map(snapshot.pools.map((p) => [String(p.pairAddress).toLowerCase(), p]));
 
   return snapshot.tokens.map((token) => {
@@ -143,16 +151,16 @@ async function getTokenMarketData() {
     const volumes = Object.fromEntries(Object.keys(windows).map((key) => [key, 0]));
     let allTimeCurrentUsd = 0;
 
-    for (const swap of swaps) {
-      const pool = poolByAddress.get(String(swap.pairAddress).toLowerCase());
+    for (const pairVolume of volumeByPair) {
+      if (pUsd === null) break;
+      const pool = poolByAddress.get(pairVolume._id);
       if (!pool) continue;
-      if (address !== String(pool.token0).toLowerCase() && address !== String(pool.token1).toLowerCase()) continue;
-      const units = getSwapVolumeForToken(swap, pool, address);
-      const usd = pUsd === null ? null : units * pUsd;
-      if (usd === null) continue;
-      const ts = new Date(swap.blockTimestamp).getTime();
-      for (const [key, cutoff] of Object.entries(windows)) if (ts >= cutoff) volumes[key] += usd;
-      allTimeCurrentUsd += usd;
+      const side = getTokenSide(pool, address);
+      if (side === null) continue;
+      const decimals = side === 0 ? pool.token0Decimals : pool.token1Decimals;
+      const usdOf = (raw) => formatRaw(raw, decimals) * pUsd;
+      for (const key of Object.keys(windows)) volumes[key] += usdOf(pairVolume[`${key}${side}`]);
+      allTimeCurrentUsd += usdOf(pairVolume[`all${side}`]);
     }
 
     return {
