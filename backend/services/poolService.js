@@ -12,6 +12,16 @@ const PAIR_ABI = [
   "function getReserves() view returns (uint112 reserve0, uint112 reserve1, uint32 blockTimestampLast)"
 ];
 
+const FACTORY_ABI = [
+  "function getPair(address tokenA, address tokenB) view returns (address pair)"
+];
+
+const factory = new ethers.Contract(
+  process.env.FACTORY_ADDRESS || "0xE4C63d8eEAeC2B717c4e24d1Cfa4a57C0A1C7907",
+  FACTORY_ABI,
+  provider
+);
+
 const ERC20_ABI = [
   "function symbol() view returns (string)",
   "function decimals() view returns (uint8)"
@@ -103,6 +113,15 @@ async function fetchPoolDetails(poolAddress) {
       pairContract.token1(),
       pairContract.getReserves()
     ]);
+
+    const factoryPair =
+      await factory.getPair(token0Address, token1Address);
+
+    if (factoryPair !== normalizedPoolAddress) {
+      throw new Error(
+        `Not a NumenDEX pair: ${normalizedPoolAddress}`
+      );
+    }
 
     // ==========================================
     // TOKEN METADATA
