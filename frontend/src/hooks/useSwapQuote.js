@@ -10,6 +10,20 @@ import {
 const QUOTE_DEBOUNCE_MS =
   350;
 
+function getQuoteKey({
+  tokenIn,
+  tokenOut,
+  amountIn,
+  slippage,
+}) {
+  return [
+    tokenIn?.address,
+    tokenOut?.address,
+    amountIn,
+    slippage,
+  ].join("|");
+}
+
 function isPositiveAmount(
   value
 ) {
@@ -57,6 +71,19 @@ export default function useSwapQuote({
     quote,
     setQuote,
   ] = useState(null);
+
+  const [
+    quoteKey,
+    setQuoteKey,
+  ] = useState("");
+
+  const currentKey =
+    getQuoteKey({
+      tokenIn,
+      tokenOut,
+      amountIn,
+      slippage,
+    });
 
   const [
     loading,
@@ -128,6 +155,10 @@ export default function useSwapQuote({
             setQuote(
               result
             );
+
+            setQuoteKey(
+              currentKey
+            );
           } catch (
             requestError
           ) {
@@ -178,11 +209,17 @@ export default function useSwapQuote({
     amountIn,
     slippage,
     enabled,
+    currentKey,
   ]);
+
+  const stale =
+    Boolean(quote) &&
+    quoteKey !== currentKey;
 
   return {
     quote,
-    loading,
+    loading:
+      loading || stale,
     error,
   };
 }

@@ -14,6 +14,7 @@ const ERC20_ABI = [
 ];
 
 const ROUTER_ABI = [
+  "function getAmountsOut(uint256 amountIn, address[] path) view returns (uint256[] amounts)",
   "function swapExactTokensForTokens(uint256 amountIn, uint256 amountOutMin, address[] path, address to, uint256 deadline) returns (uint256[] amounts)",
 ];
 
@@ -300,9 +301,30 @@ export async function approveRouter({
   };
 }
 
+function toSlippageBps(
+  slippage
+) {
+  const value =
+    Number(slippage);
+
+  if (
+    !Number.isFinite(value) ||
+    value < 0 ||
+    value >= 100
+  ) {
+    throw new Error(
+      "Slippage is invalid."
+    );
+  }
+
+  return BigInt(
+    Math.round(value * 100)
+  );
+}
+
 export async function executeTokenSwap({
   amountInRaw,
-  amountOutMinRaw,
+  slippage,
   path,
   recipient,
   deadlineMinutes = 30,
@@ -313,10 +335,9 @@ export async function executeTokenSwap({
       "Input amount"
     );
 
-  const amountOutMin =
-    normalizeRawAmount(
-      amountOutMinRaw,
-      "Minimum output amount"
+  const slippageBps =
+    toSlippageBps(
+      slippage
     );
 
   const normalizedPath =
@@ -373,6 +394,23 @@ export async function executeTokenSwap({
       ROUTER_ABI,
       signer
     );
+
+  const amounts =
+    await router.getAmountsOut(
+      amountIn,
+      normalizedPath
+    );
+
+  const amountOutMin =
+    (amounts[amounts.length - 1] *
+      (10000n - slippageBps)) /
+    10000n;
+
+  if (amountOutMin <= 0n) {
+    throw new Error(
+      "Output amount is too small."
+    );
+  }
 
   const transaction =
     await router.swapExactTokensForTokens(

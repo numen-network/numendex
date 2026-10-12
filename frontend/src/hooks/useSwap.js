@@ -4,6 +4,10 @@ import {
 } from "react";
 
 import {
+  parseUnits,
+} from "ethers";
+
+import {
   approveRouter,
   executeTokenSwap,
   getTokenAllowance,
@@ -61,6 +65,9 @@ export default function useSwap() {
       async ({
         account,
         tokenIn,
+        tokenOut,
+        amountIn,
+        slippage,
         quote,
         deadlineMinutes,
       }) => {
@@ -117,21 +124,6 @@ export default function useSwap() {
         }
 
         if (
-          !quote
-            ?.minimumAmountOut
-            ?.raw
-        ) {
-          const message =
-            "Minimum output amount is missing from the quote.";
-
-          setError(message);
-
-          throw new Error(
-            message
-          );
-        }
-
-        if (
           !Array.isArray(
             quote.path
           ) ||
@@ -148,15 +140,35 @@ export default function useSwap() {
           );
         }
 
+        const amountInRaw =
+          parseUnits(
+            String(amountIn).trim(),
+            tokenIn.decimals ?? 18
+          );
+
+        const sameAddress = (a, b) =>
+          String(a).toLowerCase() ===
+          String(b).toLowerCase();
+
+        if (
+          !sameAddress(quote.path[0], tokenIn.address) ||
+          !sameAddress(quote.path[quote.path.length - 1], tokenOut?.address) ||
+          BigInt(quote.amountIn.raw) !== amountInRaw
+        ) {
+          const message =
+            "Quote is out of date. Please try again.";
+
+          setError(message);
+
+          throw new Error(
+            message
+          );
+        }
+
         try {
           setStatus(
             "checking-allowance"
           );
-
-          const amountInRaw =
-            BigInt(
-              quote.amountIn.raw
-            );
 
           const allowance =
             await getTokenAllowance({
@@ -193,14 +205,9 @@ export default function useSwap() {
 
           const result =
             await executeTokenSwap({
-              amountInRaw:
-                quote.amountIn
-                  .raw,
+              amountInRaw,
 
-              amountOutMinRaw:
-                quote
-                  .minimumAmountOut
-                  .raw,
+              slippage,
 
               path:
                 quote.path,

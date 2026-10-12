@@ -735,6 +735,13 @@ function SwapCard({
             tokenIn:
               effectiveTokenIn,
 
+            tokenOut,
+
+            amountIn,
+
+            slippage:
+              effectiveSlippage,
+
             quote,
 
             deadlineMinutes:
@@ -768,6 +775,9 @@ function SwapCard({
         account,
         quote,
         effectiveTokenIn,
+        tokenOut,
+        amountIn,
+        effectiveSlippage,
         deadline,
         isPending,
         executeSwap,
