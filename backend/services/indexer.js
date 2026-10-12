@@ -81,66 +81,61 @@ async function ensureToken(tokenAddress, source = "indexer") {
 }
 
 async function upsertPool(pairAddress, blockNumber = null) {
-  try {
-    if (!pairAddress || !ethers.isAddress(pairAddress)) throw new Error(`Invalid pair address: ${pairAddress}`);
-    const checksumPair = ethers.getAddress(pairAddress);
-    const normalizedPair = checksumPair.toLowerCase();
-    if (normalizedPair === FACTORY_ADDRESS || normalizedPair === ZERO_ADDRESS) throw new Error("Invalid pair address.");
+  if (!pairAddress || !ethers.isAddress(pairAddress)) throw new Error(`Invalid pair address: ${pairAddress}`);
+  const checksumPair = ethers.getAddress(pairAddress);
+  const normalizedPair = checksumPair.toLowerCase();
+  if (normalizedPair === FACTORY_ADDRESS || normalizedPair === ZERO_ADDRESS) throw new Error("Invalid pair address.");
 
-    const poolData = await fetchPoolDetails(checksumPair);
-    if (!poolData?.success) throw new Error(poolData?.error || "Could not fetch pool details.");
+  const poolData = await fetchPoolDetails(checksumPair);
+  if (!poolData?.success) throw new Error(poolData?.error || "Could not fetch pool details.");
 
-    await Promise.all([
-      ensureToken(poolData.token0, "pool"),
-      ensureToken(poolData.token1, "pool"),
-    ]);
+  await Promise.all([
+    ensureToken(poolData.token0, "pool"),
+    ensureToken(poolData.token1, "pool"),
+  ]);
 
-    const existingPool = await Pool.findOne({ pairAddress: normalizedPair });
-    const oldPrice = existingPool ? Number(existingPool.price) : 0;
-    const currentPrice = Number(poolData.price || 0);
-    const resolvedBlockNumber = blockNumber !== null
-      ? Number(blockNumber)
-      : Number(poolData.blockNumber || (await provider.getBlockNumber()));
+  const existingPool = await Pool.findOne({ pairAddress: normalizedPair });
+  const oldPrice = existingPool ? Number(existingPool.price) : 0;
+  const currentPrice = Number(poolData.price || 0);
+  const resolvedBlockNumber = blockNumber !== null
+    ? Number(blockNumber)
+    : Number(poolData.blockNumber || (await provider.getBlockNumber()));
 
-    const pool = await Pool.findOneAndUpdate(
-      { pairAddress: normalizedPair },
-      {
-        $set: {
-          poolName: `${poolData.token0Symbol}/${poolData.token1Symbol}`,
-          token0: poolData.token0.toLowerCase(),
-          token1: poolData.token1.toLowerCase(),
-          token0Symbol: poolData.token0Symbol,
-          token1Symbol: poolData.token1Symbol,
-          token0Decimals: Number(poolData.token0Decimals),
-          token1Decimals: Number(poolData.token1Decimals),
-          reserve0: poolData.reserve0,
-          reserve1: poolData.reserve1,
-          price: currentPrice,
-          priceChange: oldPrice > 0 ? currentPrice - oldPrice : 0,
-          blockNumber: resolvedBlockNumber,
-          isActive: true,
-        },
+  const pool = await Pool.findOneAndUpdate(
+    { pairAddress: normalizedPair },
+    {
+      $set: {
+        poolName: `${poolData.token0Symbol}/${poolData.token1Symbol}`,
+        token0: poolData.token0.toLowerCase(),
+        token1: poolData.token1.toLowerCase(),
+        token0Symbol: poolData.token0Symbol,
+        token1Symbol: poolData.token1Symbol,
+        token0Decimals: Number(poolData.token0Decimals),
+        token1Decimals: Number(poolData.token1Decimals),
+        reserve0: poolData.reserve0,
+        reserve1: poolData.reserve1,
+        price: currentPrice,
+        priceChange: oldPrice > 0 ? currentPrice - oldPrice : 0,
+        blockNumber: resolvedBlockNumber,
+        isActive: true,
       },
-      { upsert: true, new: true, runValidators: true, setDefaultsOnInsert: true }
-    );
-    console.log(`✅ [POOL] ${pool.poolName} ${pool.pairAddress}`);
-    return pool;
-  } catch (error) {
-    console.warn(`⚠️ Pool indexing failed for ${pairAddress}: ${error.message}`);
-    return null;
-  }
+    },
+    { upsert: true, new: true, runValidators: true, setDefaultsOnInsert: true }
+  );
+  console.log(`✅ [POOL] ${pool.poolName} ${pool.pairAddress}`);
+  return pool;
 }
 
 async function syncFactoryPools() {
   const pairCount = Number(await factoryContract.allPairsLength());
   console.log(`🏭 Factory contains ${pairCount} pair(s).`);
+  const factoryPairs = [];
   for (let i = 0; i < pairCount; i += 1) {
-    try {
-      await upsertPool(await factoryContract.allPairs(i));
-    } catch (error) {
-      console.warn(`⚠️ Factory pair #${i} sync failed: ${error.message}`);
-    }
+    const pair = await factoryContract.allPairs(i);
+    factoryPairs.push(pair.toLowerCase());
+    await upsertPool(pair);
   }
+  await Pool.updateMany({ pairAddress: { $nin: factoryPairs } }, { $set: { isActive: false } });
 }
 
 async function cleanupInvalidPools() {
@@ -162,12 +157,8 @@ async function processPairCreatedLogs(fromBlock, toBlock) {
     topics: [PAIR_CREATED_TOPIC],
   });
   for (const log of logs) {
-    try {
-      const parsed = factoryInterface.parseLog(log);
-      if (parsed) await upsertPool(parsed.args.pair, log.blockNumber);
-    } catch (error) {
-      console.warn(`⚠️ PairCreated parse failed at ${log.blockNumber}: ${error.message}`);
-    }
+    const parsed = factoryInterface.parseLog(log);
+    if (parsed) await upsertPool(parsed.args.pair, log.blockNumber);
   }
 }
 
@@ -220,41 +211,43 @@ async function processSwapLogs(fromBlock, toBlock) {
 
   const timestampCache = new Map();
   for (const log of logs) {
-    try {
-      const parsed = pairInterface.parseLog(log);
-      if (!parsed) continue;
-      const transactionHash = String(log.transactionHash || "").toLowerCase();
-      const logIndex = Number(log.index ?? log.logIndex);
-      if (!transactionHash || !Number.isInteger(logIndex)) continue;
+    const parsed = pairInterface.parseLog(log);
+    if (!parsed) continue;
+    const transactionHash = String(log.transactionHash || "").toLowerCase();
+    const logIndex = Number(log.index ?? log.logIndex);
+    if (!transactionHash || !Number.isInteger(logIndex)) continue;
 
-      await Swap.findOneAndUpdate(
-        { transactionHash, logIndex },
-        {
-          $set: {
-            pairAddress: log.address.toLowerCase(),
-            transactionHash,
-            logIndex,
-            blockNumber: Number(log.blockNumber),
-            blockTimestamp: await getBlockTimestampDate(log.blockNumber, timestampCache),
-            sender: String(parsed.args.sender).toLowerCase(),
-            to: String(parsed.args.to).toLowerCase(),
-            amount0In: parsed.args.amount0In.toString(),
-            amount1In: parsed.args.amount1In.toString(),
-            amount0Out: parsed.args.amount0Out.toString(),
-            amount1Out: parsed.args.amount1Out.toString(),
-          },
+    await Swap.findOneAndUpdate(
+      { transactionHash, logIndex },
+      {
+        $set: {
+          pairAddress: log.address.toLowerCase(),
+          transactionHash,
+          logIndex,
+          blockNumber: Number(log.blockNumber),
+          blockTimestamp: await getBlockTimestampDate(log.blockNumber, timestampCache),
+          sender: String(parsed.args.sender).toLowerCase(),
+          to: String(parsed.args.to).toLowerCase(),
+          amount0In: parsed.args.amount0In.toString(),
+          amount1In: parsed.args.amount1In.toString(),
+          amount0Out: parsed.args.amount0Out.toString(),
+          amount1Out: parsed.args.amount1Out.toString(),
         },
-        { upsert: true, new: true, setDefaultsOnInsert: true }
-      );
-    } catch (error) {
-      console.warn(`⚠️ Swap processing failed at ${log.blockNumber}: ${error.message}`);
-    }
+      },
+      { upsert: true, new: true, setDefaultsOnInsert: true }
+    );
   }
 }
 
 async function refreshAllPools(blockNumber = null) {
   const pools = await Pool.find({ isActive: true }).select({ pairAddress: 1 }).lean();
-  for (const pool of pools) await upsertPool(pool.pairAddress, blockNumber);
+  for (const pool of pools) {
+    try {
+      await upsertPool(pool.pairAddress, blockNumber);
+    } catch (error) {
+      console.warn(`⚠️ Pool refresh failed for ${pool.pairAddress}: ${error.message}`);
+    }
+  }
 }
 
 async function scanBlockRange(fromBlock, toBlock) {
@@ -276,59 +269,59 @@ async function scanUntil(currentBlock, targetBlock, label) {
   return cursor;
 }
 
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+async function retryForever(task, label) {
+  for (;;) {
+    try {
+      return await task();
+    } catch (error) {
+      console.error(`❌ [${label}]:`, error.message);
+      await sleep(POLL_INTERVAL_MS);
+    }
+  }
+}
+
+// Only finalized blocks are indexed, so PoW reorgs never reach the database.
+async function syncToFinalized() {
+  const finalized = await provider.getBlock("finalized");
+  if (!finalized) throw new Error("Could not read the finalized block.");
+  const savedBlock = await getLastProcessedBlock();
+  const cursor = savedBlock ?? -1;
+  if (finalized.number <= cursor) return;
+  await scanUntil(cursor, finalized.number, savedBlock === null ? "GENESIS" : "SYNC");
+  await refreshAllPools(finalized.number);
+}
+
+async function bootstrap() {
+  const pairCount = await factoryContract.allPairsLength();
+  console.log(`✅ Factory reachable. Pair count: ${pairCount.toString()}`);
+  await cleanupInvalidPools();
+  await syncToFinalized();
+  // Factory enumeration is a second source of truth in case an RPC log batch was missed.
+  await syncFactoryPools();
+}
+
+async function pollForever() {
+  for (;;) {
+    await sleep(POLL_INTERVAL_MS);
+    await retryForever(syncToFinalized, "LIVE INDEXER");
+  }
+}
+
 async function startIndexer() {
   console.log("==================================================");
   console.log("🚀 Starting NumenDEX genesis indexer...");
   console.log(`🏭 Factory: ${FACTORY_ADDRESS}`);
   console.log("==================================================");
 
-  try {
-    const pairCount = await factoryContract.allPairsLength();
-    console.log(`✅ Factory reachable. Pair count: ${pairCount.toString()}`);
-    await cleanupInvalidPools();
+  await retryForever(bootstrap, "INDEXER BOOTSTRAP");
 
-    const latestBlock = await provider.getBlockNumber();
-    const savedBlock = await getLastProcessedBlock();
-    let currentBlock;
+  console.log("==================================================");
+  console.log("✅ Indexer synchronized. Live polling started.");
+  console.log("==================================================");
 
-    if (savedBlock === null) {
-      // -1 makes the first scanned range start at genesis block 0.
-      currentBlock = -1;
-      console.log(`📦 First v2 run. Scanning genesis block 0 -> ${latestBlock}.`);
-    } else {
-      currentBlock = savedBlock;
-      console.log(`📦 Resuming from block ${currentBlock + 1}. Latest: ${latestBlock}.`);
-    }
-
-    currentBlock = await scanUntil(currentBlock, latestBlock, savedBlock === null ? "GENESIS" : "CATCH-UP");
-
-    // Factory enumeration is a second source of truth in case an RPC log batch was missed.
-    await syncFactoryPools();
-    await refreshAllPools(latestBlock);
-
-    console.log("==================================================");
-    console.log("✅ Indexer synchronized. Live polling started.");
-    console.log("==================================================");
-
-    let polling = false;
-    setInterval(async () => {
-      if (polling) return;
-      polling = true;
-      try {
-        const newLatestBlock = await provider.getBlockNumber();
-        if (newLatestBlock > currentBlock) {
-          currentBlock = await scanUntil(currentBlock, newLatestBlock, "LIVE");
-          await refreshAllPools(currentBlock);
-        }
-      } catch (error) {
-        console.error("❌ [LIVE INDEXER]:", error.message);
-      } finally {
-        polling = false;
-      }
-    }, POLL_INTERVAL_MS);
-  } catch (error) {
-    console.error("❌ [FATAL INDEXER]:", error.message);
-  }
+  pollForever();
 }
 
 module.exports = {

@@ -232,31 +232,29 @@ function parsePagination(value, fallback, maximum) {
 // ======================================================
 
 async function connectDatabase() {
-  try {
-    if (!process.env.MONGO_URI) {
-      throw new Error("MONGO_URI is not configured");
-    }
+  if (!process.env.MONGO_URI) {
+    throw new Error("MONGO_URI is not configured");
+  }
 
-    await mongoose.connect(process.env.MONGO_URI);
-
-    console.log(
-      "Connected to MongoDB Atlas successfully"
-    );
-
+  for (;;) {
     try {
-      await startIndexer();
+      await mongoose.connect(process.env.MONGO_URI);
+      break;
     } catch (error) {
       console.error(
-        "Indexer startup error:",
-        error
+        "MongoDB connection error:",
+        error.message
       );
+
+      await new Promise((resolve) => setTimeout(resolve, 5000));
     }
-  } catch (error) {
-    console.error(
-      "MongoDB connection error:",
-      error
-    );
   }
+
+  console.log(
+    "Connected to MongoDB Atlas successfully"
+  );
+
+  await startIndexer();
 }
 
 connectDatabase();
